@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+dependencies {
+    compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+sourceCompatibility = 1.8
+version = '0.0.1'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'FotoCollector',
+                   'Implementation-Version': version
+    }
+}
