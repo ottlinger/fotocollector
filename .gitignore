@@ -23,3 +23,10 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
+
+.classpath
+.project
+target
+.idea
+*.iml
+*.ipr
