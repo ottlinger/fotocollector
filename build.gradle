@@ -9,6 +9,9 @@ repositories {
 }
 
 dependencies {
+    compile 'com.fasterxml.jackson.core:jackson-core:2.7.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.1'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.1'
     compile 'org.apache.tika:tika-parsers:1.11'
     compile 'org.apache.tika:tika-core:1.11'
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
