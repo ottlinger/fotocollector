@@ -3,6 +3,7 @@ package de.aikiit.fotocollector.main;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.aikiit.fotocollector.OutputResult;
 import de.aikiit.fotocollector.OutputWriter;
+import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
 
 /**
@@ -15,6 +16,18 @@ public class JsonOutputWriter implements OutputWriter {
 
     @Override
     public OutputResult write(final ScanResult result) {
-        return null;
+
+        if(result == null || result.isEmpty()) {
+            return new OutputResult(null);
+        }
+
+        StringBuilder res = new StringBuilder();
+        for(ScanEntry entry : result.getEntries()) {
+            // TODO jsonify
+            res.append(entry.getFileName()).append(",");
+        }
+
+        return new OutputResult(res.toString());
+
     }
 }

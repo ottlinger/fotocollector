@@ -6,6 +6,5 @@ package de.aikiit.fotocollector;
  */
 public interface OutputWriter {
 
-
     OutputResult write(ScanResult result);
 }
