@@ -8,7 +8,7 @@ import com.google.common.base.Strings;
  */
 public class OutputResult {
 
-    private String result;
+    private final String result;
 
     public OutputResult(String result) {
         this.result = result;

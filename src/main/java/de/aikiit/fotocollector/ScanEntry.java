@@ -6,7 +6,7 @@ package de.aikiit.fotocollector;
  */
 public class ScanEntry {
 
-    private String fileName;
+    private final String fileName;
 
     public ScanEntry(String fileName) {
         this.fileName = fileName;

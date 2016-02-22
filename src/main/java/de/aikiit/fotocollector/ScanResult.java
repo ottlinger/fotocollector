@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public class ScanResult {
 
-    private Set<ScanEntry> entries= Sets.newHashSet();
+    private final Set<ScanEntry> entries = Sets.newHashSet();
 
     public Set<ScanEntry> getEntries() {
         return Sets.newHashSet(entries);
