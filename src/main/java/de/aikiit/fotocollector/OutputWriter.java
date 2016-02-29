@@ -6,5 +6,12 @@ package de.aikiit.fotocollector;
  */
 public interface OutputWriter {
 
+    /**
+     * Transforms a given scan result into a specific output result.
+     * Each implementation may define a format that is written from the given scanned files.
+     * Example: JSON transformer, HTML transformer.
+     * @param result
+     * @return output result transformed by reading the given scan result.
+     */
     OutputResult write(ScanResult result);
 }
