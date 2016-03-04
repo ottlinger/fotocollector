@@ -17,7 +17,13 @@ y)](http://waffle.io/ottlinger/fotocollector)
 ## Howtos
 
 ### Build yourself
-tbd
+ 
+The tool can easily be built via gradle. It's main goal is clean install, so just run:
+'''
+gradle
+'''
+after having checked out.
+
 ### Run the tool
 tbd
 

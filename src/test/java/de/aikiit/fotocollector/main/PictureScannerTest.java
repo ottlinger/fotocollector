@@ -23,4 +23,9 @@ public class PictureScannerTest {
         List<String> pictures = new PictureScanner(null).getFiles();
         assertNotNull(pictures);
     }
+    @Test
+    public void scanRecursively() {
+        List<String> pictures = new PictureScanner(Paths.get(System.getProperty("user.home")).resolve("Documents/Pictures/2016")).getFilesRecursively();
+        assertNotNull(pictures);
+    }
 }
