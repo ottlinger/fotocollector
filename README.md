@@ -37,4 +37,6 @@ Project idea grew when I wanted to generate some Xmas-related image collections.
 The idea is to scan for images and generate a JSON file structure with a collection's title and the list of image names.
 These names can later be used to scan a certain directory and copy the image to a before mentioned directory in order to restore a collection without keeping dozens of copies of the original images.
 
+## License
 
+This tool is licensed under Apache License v2.0.
