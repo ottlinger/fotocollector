@@ -39,4 +39,4 @@ These names can later be used to scan a certain directory and copy the image to 
 
 ## License
 
-This tool is licensed under [![Apache License v2.0](https://www.apache.org/licenses/)].
+This tool is licensed under [Apache License v2.0](https://www.apache.org/licenses/).
