@@ -8,7 +8,7 @@ Helper to generate metadata about foto collections to not copy image files again
 [![codecov.io](http://codecov.io/github/ottlinger/fotocollector/coverage.svg?bran
 ch=master)](http://codecov.io/github/ottlinger/fotocollector?branch=master)
 
-[![Stories in 
+[![Stories in
 Ready](https://badge.waffle.io/ottlinger/fotocollector.svg?label=ready&title=Read
 y)](http://waffle.io/ottlinger/fotocollector)
 
@@ -17,11 +17,11 @@ y)](http://waffle.io/ottlinger/fotocollector)
 ## Howtos
 
 ### Build yourself
- 
+
 The tool can easily be built via gradle. It's main goal is clean install, so just run:
-'''
+```
 gradle
-'''
+```
 after having checked out.
 
 ### Run the tool
@@ -39,4 +39,4 @@ These names can later be used to scan a certain directory and copy the image to 
 
 ## License
 
-This tool is licensed under Apache License v2.0.
+This tool is licensed under [![Apache License v2.0](https://www.apache.org/licenses/)].
