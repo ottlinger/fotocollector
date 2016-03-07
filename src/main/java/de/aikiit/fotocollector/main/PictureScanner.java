@@ -1,6 +1,6 @@
 package de.aikiit.fotocollector.main;
 
-import com.beust.jcommander.internal.Lists;
+import com.google.common.collect.Lists;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -18,6 +18,8 @@ import java.util.List;
  */
 
 public final class PictureScanner {
+
+    private static final PictureFileFilter PICTURE_MATCHER = new PictureFileFilter();
 
     private final Path basePath;
 
@@ -37,6 +39,7 @@ public final class PictureScanner {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                     // TODO extraxt picture recognition and case insensitivity
+
                     if (!attrs.isDirectory() && file.toString().endsWith("jpg")) {
                         results.add(file.toString());
                         System.out.println(file.toFile());
