@@ -36,7 +36,7 @@ public class JsonOutputWriterTest {
         final OutputResult outputResult = writer.write(result);
         assertFalse(outputResult.isEmpty());
 
-        assertEquals(fileName + ",", outputResult.getResult());
+        assertEquals("[{\"fileName\":\"testFileName.txt\"}]", outputResult.getResult());
     }
 
 
