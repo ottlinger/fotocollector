@@ -28,4 +28,26 @@ public class ScanResult {
         return entries.isEmpty();
     }
 
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final ScanResult that = (ScanResult) o;
+
+        return entries.equals(that.entries);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return entries.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "ScanResult{" +
+                "entries=" + entries +
+                '}';
+    }
 }

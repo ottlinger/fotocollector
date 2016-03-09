@@ -11,7 +11,7 @@ import java.util.List;
  * @author hirsch
  * @version 2016-03-07, 22:50
  */
-public class PictureFileFilter implements FileFilter {
+class PictureFileFilter implements FileFilter {
 
     private static final List<String> PICTURE_ENDINGS = Arrays.asList("jpg", "gif", "jpeg", "png");
 

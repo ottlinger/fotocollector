@@ -17,7 +17,7 @@ import java.util.List;
  * @version 2016-03-03, 00:11
  */
 
-public final class PictureScanner {
+final class PictureScanner {
 
     private static final PictureFileFilter PICTURE_MATCHER = new PictureFileFilter();
 
@@ -31,7 +31,7 @@ public final class PictureScanner {
         }
     }
 
-    // TODO add recursive file scanning
+    // TODO add recursive file scanning by option
     public List<String> getFilesRecursively() {
         List<String> results = Lists.newArrayList();
         try {

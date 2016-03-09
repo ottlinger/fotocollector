@@ -12,7 +12,7 @@ import de.aikiit.fotocollector.ScanResult;
  */
 public class JsonOutputWriter implements OutputWriter {
 
-    private ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     @Override
     public OutputResult write(final ScanResult result) {
@@ -22,7 +22,7 @@ public class JsonOutputWriter implements OutputWriter {
         }
 
         try {
-            return new OutputResult(mapper.writeValueAsString(result.getEntries()));
+            return new OutputResult(MAPPER.writeValueAsString(result.getEntries()));
         } catch (JsonProcessingException e) {
             return new OutputResult(null);
         }

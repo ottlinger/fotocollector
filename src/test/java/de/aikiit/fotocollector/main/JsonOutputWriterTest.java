@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -28,15 +30,16 @@ public class JsonOutputWriterTest {
     }
 
     @Test
-    public void writeWithResult() {
+    public void writeWithSingleResult() {
         final String fileName = "testFileName.txt";
         final ScanResult result = new ScanResult();
-        final ScanEntry entry = new ScanEntry(fileName);
+        final ScanEntry entry = new ScanEntry(fileName, new Date(1));
         result.addEntry(entry);
+        result.addEntry(new ScanEntry("a"+fileName, new Date(0)));
         final OutputResult outputResult = writer.write(result);
         assertFalse(outputResult.isEmpty());
 
-        assertEquals("[{\"fileName\":\"testFileName.txt\"}]", outputResult.getResult());
+        assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":1},{\"fileName\":\"atestFileName.txt\",\"creationDate\":0}]", outputResult.getResult());
     }
 
 
