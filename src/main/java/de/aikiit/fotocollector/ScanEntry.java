@@ -1,5 +1,8 @@
 package de.aikiit.fotocollector;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import de.aikiit.fotocollector.main.DateJacksonSerializer;
+
 import java.util.Date;
 
 /**
@@ -12,6 +15,7 @@ public class ScanEntry {
 
     // TODO is it useful to add dates from EXIF?!
     private final String fileName;
+
     private final Date creationDate;
 
     public ScanEntry(String fileName) {
@@ -27,6 +31,7 @@ public class ScanEntry {
         return fileName;
     }
 
+    @JsonSerialize(using=DateJacksonSerializer.class)
     public Date getCreationDate() {
         return creationDate;
     }

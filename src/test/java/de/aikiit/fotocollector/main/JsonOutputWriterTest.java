@@ -35,11 +35,11 @@ public class JsonOutputWriterTest {
         final ScanResult result = new ScanResult();
         final ScanEntry entry = new ScanEntry(fileName, new Date(1));
         result.addEntry(entry);
-        result.addEntry(new ScanEntry("a"+fileName, new Date(0)));
+        result.addEntry(new ScanEntry("a" + fileName, new Date(0)));
         final OutputResult outputResult = writer.write(result);
         assertFalse(outputResult.isEmpty());
 
-        assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":1},{\"fileName\":\"atestFileName.txt\",\"creationDate\":0}]", outputResult.getResult());
+        assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":\"1970-01-01 01:00:00\"},{\"fileName\":\"atestFileName.txt\",\"creationDate\":\"1970-01-01 01:00:00\"}]", outputResult.getResult());
     }
 
 
