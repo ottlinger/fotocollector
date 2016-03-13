@@ -1,8 +1,11 @@
+import org.gradle.logging.ShowStacktrace
+gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-defaultTasks 'clean','build' 
+defaultTasks 'clean','build'
 
 repositories {
     mavenCentral()

@@ -39,7 +39,10 @@ public class JsonOutputWriterTest {
         final OutputResult outputResult = writer.write(result);
         assertFalse(outputResult.isEmpty());
 
-        assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":\"1970-01-01 01:00:00\"},{\"fileName\":\"atestFileName.txt\",\"creationDate\":\"1970-01-01 01:00:00\"}]", outputResult.getResult());
+
+        final String json = outputResult.getResult();
+        System.out.println(json);
+        assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":\"1970-01-01 01:00:00\"},{\"fileName\":\"atestFileName.txt\",\"creationDate\":\"1970-01-01 01:00:00\"}]", json);
     }
 
 
