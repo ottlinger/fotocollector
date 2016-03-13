@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * @author hirsch
@@ -17,7 +18,14 @@ import java.util.Locale;
 public class DateJacksonSerializer extends JsonSerializer<Date> {
     @Override
     public void serialize(final Date value, final JsonGenerator gen, final SerializerProvider serializers) throws IOException, JsonProcessingException {
-        String formattedDate = value != null ? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.GERMANY).format(value) : "none";
-        gen.writeString(formattedDate);
+
+        if (value == null) {
+            gen.writeString("none");
+            return;
+        }
+
+        final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.GERMANY);
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        gen.writeString(sdf.format(value));
     }
 }
