@@ -3,12 +3,6 @@ language: java
 jdk:
   - oraclejdk8
 
-addons:
-  apt:
-    packages:
-# disallowed at travis    - xml-twig-tools
-    - xsltproc
-
 env:
   - DSPLAY=:0
 
@@ -23,4 +17,4 @@ env:
   - TERM=dumb
   - GRADLE_OPTS="-Xmx768m -Xms256m -XX:MaxPermSize=256m -XX:+CMSClassUnloadingEnabled"
 
-after_failure: ./travis-after-failure.sh
+after_failure: ./travis-failure.sh
