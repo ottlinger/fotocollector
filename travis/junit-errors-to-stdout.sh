@@ -17,7 +17,8 @@ if [ -n "$FILES" ]; then
 		echo "Formatting $file"
 		if [ -f "$file" ]; then
 			echo '====================================================='
-			xsltproc "$DIR/junit-xml-format-errors.xsl" "$file"
+			# xsltproc "$DIR/junit-xml-format-errors.xsl" "$file"
+			cat $file
 		fi
 	done
 	echo '====================================================='

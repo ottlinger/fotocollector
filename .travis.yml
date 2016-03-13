@@ -6,7 +6,7 @@ jdk:
 addons:
   apt:
     packages:
-    - xml-twig-tools
+# disallowed at travis    - xml-twig-tools
     - xsltproc
 
 env:
