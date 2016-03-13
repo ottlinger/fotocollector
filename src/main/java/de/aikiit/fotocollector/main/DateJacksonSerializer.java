@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * @author hirsch
@@ -16,7 +17,7 @@ import java.util.Date;
 public class DateJacksonSerializer extends JsonSerializer<Date> {
     @Override
     public void serialize(final Date value, final JsonGenerator gen, final SerializerProvider serializers) throws IOException, JsonProcessingException {
-        String formattedDate = value != null ? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(value) : "none";
+        String formattedDate = value != null ? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.GERMANY).format(value) : "none";
         gen.writeString(formattedDate);
     }
 }
