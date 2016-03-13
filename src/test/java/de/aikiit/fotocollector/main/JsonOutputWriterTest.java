@@ -42,7 +42,7 @@ public class JsonOutputWriterTest {
 
         final String json = outputResult.getResult();
         System.out.println(json);
-        assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":\"1970-01-01 01:00:00\"},{\"fileName\":\"atestFileName.txt\",\"creationDate\":\"1970-01-01 01:00:00\"}]", json);
+        assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"},{\"fileName\":\"atestFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"}]", json);
     }
 
 
