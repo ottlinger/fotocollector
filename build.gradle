@@ -2,6 +2,13 @@ import org.gradle.logging.ShowStacktrace
 gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
 
 apply plugin: 'java'
+test {
+    testLogging {
+        events "failed"
+        exceptionFormat "short"
+    }
+}
+
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
