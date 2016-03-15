@@ -9,13 +9,19 @@ import com.google.common.base.Strings;
 public class OutputResult {
 
     private final String result;
+    private final String name;
 
-    public OutputResult(String result) {
+    public OutputResult(String result, String name) {
         this.result = result;
+        this.name = name;
     }
 
     public String getResult() {
         return this.result;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public boolean isEmpty() {

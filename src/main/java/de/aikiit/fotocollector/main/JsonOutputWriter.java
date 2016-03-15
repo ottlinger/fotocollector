@@ -13,18 +13,19 @@ import de.aikiit.fotocollector.ScanResult;
 public class JsonOutputWriter implements OutputWriter {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final String NAME = "fotocollector.json";
 
     @Override
     public OutputResult write(final ScanResult result) {
 
         if(result == null || result.isEmpty()) {
-            return new OutputResult(null);
+            return new OutputResult(null, NAME);
         }
 
         try {
-            return new OutputResult(MAPPER.writeValueAsString(result.getEntries()));
+            return new OutputResult(MAPPER.writeValueAsString(result.getEntries()), NAME);
         } catch (JsonProcessingException e) {
-            return new OutputResult(null);
+            return new OutputResult(null, NAME);
         }
 
     }
