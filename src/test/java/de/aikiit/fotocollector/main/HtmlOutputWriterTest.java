@@ -1,10 +1,12 @@
 package de.aikiit.fotocollector.main;
 
 import de.aikiit.fotocollector.OutputResult;
+import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,5 +22,15 @@ public class HtmlOutputWriterTest {
             final OutputResult result = new HtmlOutputWriter().write(input);
             assertThat(result.getResult()).contains("empty");
         }
+    }
+
+    @Test
+    public void checkWithEntries() {
+        final ScanResult input = new ScanResult();
+        final ScanEntry image = new ScanEntry("ASplendidPic.jpeg", new Date(12345));
+        input.addEntry(image);
+        final OutputResult write = new HtmlOutputWriter().write(input);
+        assertThat(write.getResult()).isNotEmpty();
+        System.out.println(write.getResult());
     }
 }
