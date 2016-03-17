@@ -1,9 +1,12 @@
 package de.aikiit.fotocollector.main;
 
+import de.aikiit.fotocollector.OutputResult;
 import de.aikiit.fotocollector.ScanResult;
 import org.junit.Test;
 
-import static org.junit.Assert.assertNull;
+import java.util.Arrays;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author hirsch
@@ -12,7 +15,10 @@ import static org.junit.Assert.assertNull;
 public class HtmlOutputWriterTest {
 
     @Test
-    public void checkResult() {
-        assertNull(new HtmlOutputWriter().write(new ScanResult()));
+    public void checkEmptyResult() {
+        for (ScanResult input : Arrays.asList(null, new ScanResult())) {
+            final OutputResult result = new HtmlOutputWriter().write(input);
+            assertThat(result.getResult()).contains("empty");
+        }
     }
 }

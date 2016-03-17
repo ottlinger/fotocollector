@@ -40,6 +40,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
     testCompile 'org.mockito:mockito-all:2.0.2-beta'
     testCompile 'org.assertj:assertj-core-java8:1.0.0m1'
+    testCompile 'org.assertj:assertj-core:3.3.0'
 }
 
 allprojects {
