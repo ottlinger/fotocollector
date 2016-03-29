@@ -1,9 +1,9 @@
 package de.aikiit.fotocollector.main;
 
+import de.aikiit.fotocollector.ScanResult;
 import org.junit.Test;
 
 import java.nio.file.Paths;
-import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -20,12 +20,12 @@ public class PictureScannerTest {
 
     @Test
     public void withDefaultParam() {
-        List<String> pictures = new PictureScanner(null).getFiles();
+        ScanResult pictures = new PictureScanner(null).getFiles();
         assertNotNull(pictures);
     }
     @Test
     public void scanRecursively() {
-        List<String> pictures = new PictureScanner(Paths.get(System.getProperty("user.home")).resolve("Documents/Pictures/2016")).getFilesRecursively();
+        ScanResult pictures = new PictureScanner(Paths.get(System.getProperty("user.home")).resolve("Documents/Pictures/2016")).getFilesRecursively();
         assertNotNull(pictures);
     }
 }

@@ -1,6 +1,8 @@
 package de.aikiit.fotocollector.main;
 
 import com.google.common.collect.Lists;
+import de.aikiit.fotocollector.ScanEntry;
+import de.aikiit.fotocollector.ScanResult;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -10,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +20,7 @@ import java.util.List;
  * @version 2016-03-03, 00:11
  */
 
-final class PictureScanner {
+public final class PictureScanner {
 
     private static final PictureFileFilter PICTURE_MATCHER = new PictureFileFilter();
 
@@ -31,16 +34,14 @@ final class PictureScanner {
         }
     }
 
-    // TODO add recursive file scanning by option
-    public List<String> getFilesRecursively() {
+    // TODO add recursive file scanning as an option
+    public ScanResult getFilesRecursively() {
         List<String> results = Lists.newArrayList();
         try {
             Files.walkFileTree(this.basePath, new SimpleFileVisitor<Path>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                    // TODO extraxt picture recognition and case insensitivity
-
-                    if (!attrs.isDirectory() && file.toString().endsWith("jpg")) {
+                    if (!attrs.isDirectory() && PICTURE_MATCHER.accept(file.toFile())) {
                         results.add(file.toString());
                         System.out.println(file.toFile());
                     }
@@ -51,24 +52,27 @@ final class PictureScanner {
             // intentional fallthrough
         }
 
-        return results;
+        // FIXME
+        return new ScanResult();
     }
 
-    public List<String> getFiles() {
+    public ScanResult getFiles() {
 
-        List<String> results = Lists.newArrayList();
+        final ScanResult scanResult = new ScanResult();
+        // TODO keep in sync with PictureFileFilter
         try {
-            try (DirectoryStream<Path> files = Files.newDirectoryStream(this.basePath, "*.{gif,jpg,png}")) {
+            try (DirectoryStream<Path> files = Files.newDirectoryStream(this.basePath, "*.{gif,jpg,png,jpeg}")) {
                 for (Path path : files) {
                     final Path fileName = path.getFileName();
-                    System.out.println(fileName);
-                    results.add(fileName.toString());
+                    BasicFileAttributes attr = Files.readAttributes(path, BasicFileAttributes.class);
+                    System.out.println(fileName + " created at "+ attr.creationTime());
+                    scanResult.addEntry(new ScanEntry(fileName.toString(), new Date(attr.creationTime().toMillis())));
                 }
             }
         } catch (IOException e) {
             // intentional fallthrough
         }
-        return results;
+        return scanResult;
     }
 
 
