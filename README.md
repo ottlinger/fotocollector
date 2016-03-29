@@ -28,6 +28,15 @@ after having checked out.
 ### Run the tool
 tbd
 
+## Releases
+### 0.0.1 - 20160329
+
+This first release contains some Tika experiments and a basic skeleton for JSON and HTML generation.
+Furthermore I experienced the ease of releasing with gradle, it nails down to a
+```
+$ gradle release
+```
+
 ## History
 ### 2015-11
 
