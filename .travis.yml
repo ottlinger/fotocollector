@@ -13,6 +13,10 @@ before_script:
 after_success:
   - codecov
 
+test:
+  post:
+  - if [ -e ./gradlew ]; then ./gradlew jacocoTestReport;else gradle jacocoTestReport;fi
+
 env:
   global:
   - TERM=dumb
