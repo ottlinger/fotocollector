@@ -5,6 +5,14 @@ plugins {
 import org.gradle.logging.ShowStacktrace
 gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
 
+// Codecov integration
+apply plugin: 'jacoco'
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
+
 apply plugin: 'application'
 apply plugin: 'java'
 test {
