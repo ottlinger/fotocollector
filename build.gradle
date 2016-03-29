@@ -5,6 +5,7 @@ plugins {
 import org.gradle.logging.ShowStacktrace
 gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
 
+apply plugin: 'application'
 apply plugin: 'java'
 test {
     testLogging {
@@ -27,7 +28,16 @@ test {
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-defaultTasks 'clean','build'
+defaultTasks 'clean','build','uberjar'
+
+mainClassName  = 'de.aikiit.fotocollector.FotoCollectorApplication'
+task uberjar(type: Jar) {
+    from files(sourceSets.main.output.classesDir)
+    from {configurations.compile.collect {zipTree(it)}} {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+}
 
 repositories {
     mavenCentral()
@@ -38,8 +48,6 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-core:2.7.3'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.3'
-    compile 'org.apache.tika:tika-parsers:1.12'
-    compile 'org.apache.tika:tika-core:1.12'
     compile 'org.apache.commons:commons-collections4:4.1'
     testCompile group: 'junit', name: 'junit', version: '4.+'
     testCompile 'org.mockito:mockito-all:2.0.2-beta'
@@ -55,6 +63,9 @@ allprojects {
 jar {
     manifest {
         attributes 'Implementation-Title': 'FotoCollector',
-                   'Implementation-Version': version
+                   'Implementation-Version': version,
+                   'Main-Class': mainClassName
     }
+}
+
 }
