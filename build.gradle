@@ -5,14 +5,6 @@ plugins {
 import org.gradle.logging.ShowStacktrace
 gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
 
-// Codecov integration
-apply plugin: 'jacoco'
-jacocoTestReport {
-    reports {
-        xml.enabled true
-    }
-}
-
 apply plugin: 'application'
 apply plugin: 'java'
 test {
@@ -29,14 +21,22 @@ test {
         // remove standard output/error logging from --info builds
         // by assigning only 'failed' and 'skipped' events
         info.events = ["failed", "skipped"]
+    }
+}
 
+// Codecov integration
+apply plugin: 'jacoco'
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
     }
 }
 
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-defaultTasks 'clean','build','uberjar'
+defaultTasks 'clean','build'
 
 mainClassName  = 'de.aikiit.fotocollector.FotoCollectorApplication'
 task uberjar(type: Jar) {
@@ -45,6 +45,7 @@ task uberjar(type: Jar) {
         exclude "META-INF/*.SF"
         exclude "META-INF/*.DSA"
         exclude "META-INF/*.RSA"
+    }
 }
 
 repositories {
@@ -74,6 +75,4 @@ jar {
                    'Implementation-Version': version,
                    'Main-Class': mainClassName
     }
-}
-
 }
