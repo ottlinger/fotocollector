@@ -7,6 +7,8 @@ gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
 
 apply plugin: 'application'
 apply plugin: 'java'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 test {
     testLogging {
         events "failed"
@@ -61,12 +63,6 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
     testCompile 'org.mockito:mockito-all:2.0.2-beta'
     testCompile 'org.assertj:assertj-core:3.3.0'
-}
-
-allprojects {
-    apply plugin: 'java'
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
 }
 
 jar {
