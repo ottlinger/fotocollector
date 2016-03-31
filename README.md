@@ -26,7 +26,7 @@ gradle
 after having checked out.
 
 ### Run the tool
-tbd
+Since the tool is still in development there's no command-line at the moment.
 
 ## Releases
 ### 0.0.1 - 20160329
