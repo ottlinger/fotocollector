@@ -1,3 +1,6 @@
+April 1st is April's fools day :-D
+
+
 # fotocollector
 Helper to generate metadata about foto collections to not copy image files again and again :-)
 This metadata is supposed to be used to recreate collections of files.
