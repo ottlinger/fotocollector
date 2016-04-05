@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.io.File;
+import java.nio.file.Path;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
@@ -22,13 +24,14 @@ import static org.junit.Assert.assertTrue;
 public class JsonOutputWriterTest {
 
     private final JsonOutputWriter writer = new JsonOutputWriter();
+    private final static Path cwd = new File(".").toPath();
 
     @Test
     public void writeWithoutResults() {
         final ScanResult result = new ScanResult();
         final OutputResult outputResult = writer.write(result);
         assertTrue(outputResult.isEmpty());
-        assertNull(outputResult.flush());
+        assertNull(outputResult.flush(cwd));
     }
 
     @Test
@@ -45,7 +48,7 @@ public class JsonOutputWriterTest {
         System.out.println(json);
         assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"},{\"fileName\":\"atestFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"}]", json);
 
-        assertNull(outputResult.flush());
+        assertNull(outputResult.flush(cwd));
     }
 
 }

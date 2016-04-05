@@ -32,7 +32,7 @@ public class OutputResult {
         return Strings.isNullOrEmpty(result);
     }
 
-    public Path flush() {
+    public Path flush(Path basePath) {
         // TODO: performs the writing to the filesystem
         // In case the file exists, add .1 etc until it does not exist anymore and can be written from the result
         return null;

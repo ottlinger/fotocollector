@@ -24,7 +24,10 @@ public class FotoCollectorApplication {
 
         final ScanResult scanResult = new PictureScanner(files).getFiles();
 
-        new HtmlOutputWriter().write(scanResult);
-        new JsonOutputWriter().write(scanResult);
+        final OutputResult html = new HtmlOutputWriter().write(scanResult);
+        final OutputResult json = new JsonOutputWriter().write(scanResult);
+
+        html.flush(files);
+        json.flush(files);
     }
 }
