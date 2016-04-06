@@ -29,6 +29,10 @@ after having checked out.
 Since the tool is still in development there's no command-line at the moment.
 
 ## Releases
+### 0.0.2-SNAPSHOT
+
+Current work in progress :-D
+
 ### 0.0.1 - 20160329
 
 This [first release](https://github.com/ottlinger/fotocollector/tree/0.0.1) contains some Tika experiments and a basic skeleton for JSON and HTML generation.
