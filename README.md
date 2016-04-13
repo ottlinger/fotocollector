@@ -31,7 +31,7 @@ Since the tool is still in development there's no command-line at the moment.
 ## Releases
 ### 0.0.2-SNAPSHOT
 
-Current work in progress :-D
+Currently: work in progress :-D
 
 ### 0.0.1 - 20160329
 
