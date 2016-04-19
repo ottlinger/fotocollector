@@ -5,6 +5,8 @@ import de.aikiit.fotocollector.main.JsonOutputWriter;
 import de.aikiit.fotocollector.main.PictureScanner;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -16,11 +18,10 @@ import java.nio.file.Paths;
  */
 public class FotoCollectorApplication {
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws IOException {
         Path files = ((args != null) && (args.length >= 1)) ? Paths.get(args[0]) : new File(".").toPath();
 
-        System.out.println("Will work on directory: " + files);
-
+        System.out.println("Will work on directory: " + files.toRealPath(LinkOption.NOFOLLOW_LINKS));
 
         final ScanResult scanResult = new PictureScanner(files).getFiles();
 
