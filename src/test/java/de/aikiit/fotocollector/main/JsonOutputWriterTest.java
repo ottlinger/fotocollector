@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Date;
 
@@ -27,7 +28,7 @@ public class JsonOutputWriterTest {
     private final static Path cwd = new File(".").toPath();
 
     @Test
-    public void writeWithoutResults() {
+    public void writeWithoutResults() throws IOException {
         final ScanResult result = new ScanResult();
         final OutputResult outputResult = writer.write(result);
         assertTrue(outputResult.isEmpty());
@@ -35,7 +36,7 @@ public class JsonOutputWriterTest {
     }
 
     @Test
-    public void writeWithSingleResult() {
+    public void writeWithSingleResult() throws IOException {
         final String fileName = "testFileName.txt";
         final ScanResult result = new ScanResult();
         final ScanEntry entry = new ScanEntry(fileName, new Date(1));

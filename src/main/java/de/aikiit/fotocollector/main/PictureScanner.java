@@ -35,6 +35,7 @@ public final class PictureScanner {
     }
 
     // TODO add recursive file scanning as an option
+    // http://www.ntu.edu.sg/home/ehchua/programming/java/J5b_IO.html
     public ScanResult getFilesRecursively() {
         List<String> results = Lists.newArrayList();
         try {

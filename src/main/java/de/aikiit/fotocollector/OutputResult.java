@@ -2,7 +2,10 @@ package de.aikiit.fotocollector;
 
 import com.google.common.base.Strings;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Container of a scan result being ready to
@@ -32,7 +35,12 @@ public class OutputResult {
         return Strings.isNullOrEmpty(result);
     }
 
-    public Path flush(Path basePath) {
+    public Path flush(Path basePath) throws IOException {
+
+        if(!isEmpty()) {
+            Files.write(Paths.get(basePath.toString(),name), result.getBytes("UTF-8"));
+
+        }
 
 
 
