@@ -14,7 +14,6 @@ import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -32,7 +31,7 @@ public class JsonOutputWriterTest {
         final ScanResult result = new ScanResult();
         final OutputResult outputResult = writer.write(result);
         assertTrue(outputResult.isEmpty());
-        assertNull(outputResult.flush(cwd));
+        assertFalse(outputResult.flush(cwd).isPresent());
     }
 
     @Test
@@ -49,7 +48,7 @@ public class JsonOutputWriterTest {
         System.out.println(json);
         assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"},{\"fileName\":\"atestFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"}]", json);
 
-        assertNull(outputResult.flush(cwd));
+        assertTrue(outputResult.flush(cwd).isPresent());
     }
 
 }

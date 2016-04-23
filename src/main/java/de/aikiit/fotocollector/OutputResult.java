@@ -1,11 +1,12 @@
 package de.aikiit.fotocollector;
 
 import com.google.common.base.Strings;
+import de.aikiit.fotocollector.util.FileUtil;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Optional;
 
 /**
  * Container of a scan result being ready to
@@ -35,18 +36,14 @@ public class OutputResult {
         return Strings.isNullOrEmpty(result);
     }
 
-    public Path flush(Path basePath) throws IOException {
+    public Optional<Path> flush(Path basePath) throws IOException {
 
         if(!isEmpty()) {
-            final Path targetPath = Paths.get(basePath.toString(), name);
+            final Path targetPath = FileUtil.makeUnique(basePath, name);
             Files.write(targetPath, result.getBytes("UTF-8"));
+            return Optional.of(targetPath);
         }
-
-
-
-        // TODO: performs the writing to the filesystem
-        // In case the file exists, add .1 etc until it does not exist anymore and can be written from the result
-        return null;
+        return Optional.empty();
     }
 
 
