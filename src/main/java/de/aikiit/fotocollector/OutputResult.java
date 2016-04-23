@@ -38,8 +38,8 @@ public class OutputResult {
     public Path flush(Path basePath) throws IOException {
 
         if(!isEmpty()) {
-            Files.write(Paths.get(basePath.toString(),name), result.getBytes("UTF-8"));
-
+            final Path targetPath = Paths.get(basePath.toString(), name);
+            Files.write(targetPath, result.getBytes("UTF-8"));
         }
 
 
@@ -48,5 +48,7 @@ public class OutputResult {
         // In case the file exists, add .1 etc until it does not exist anymore and can be written from the result
         return null;
     }
+
+
 
 }
