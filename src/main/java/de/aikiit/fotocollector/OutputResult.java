@@ -42,6 +42,8 @@ public class OutputResult {
             final Path targetPath = FileUtil.makeUnique(basePath, name);
             Files.write(targetPath, result.getBytes("UTF-8"));
             return Optional.of(targetPath);
+        } else {
+            System.out.println("Empty result is not written into " + name);
         }
         return Optional.empty();
     }

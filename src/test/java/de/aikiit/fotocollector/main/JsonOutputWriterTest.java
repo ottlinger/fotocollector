@@ -49,6 +49,7 @@ public class JsonOutputWriterTest {
         assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"},{\"fileName\":\"atestFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"}]", json);
 
         assertTrue(outputResult.flush(cwd).isPresent());
+        assertTrue(new File(".", "fotocollector.json").delete());
     }
 
 }

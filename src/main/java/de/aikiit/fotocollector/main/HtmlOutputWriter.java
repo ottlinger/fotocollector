@@ -23,7 +23,7 @@ public class HtmlOutputWriter implements OutputWriter {
     @Override
     public OutputResult write(final ScanResult result) {
         if (result == null || result.isEmpty()) {
-            return new OutputResult("empty", NAME);
+            return new OutputResult(null, NAME);
         }
 
         StringBuilder table = new StringBuilder();

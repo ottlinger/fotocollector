@@ -4,8 +4,9 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 /**
  * @author hirsch
@@ -13,11 +14,12 @@ import static org.junit.Assert.assertTrue;
  */
 public class FotoCollectorApplicationTest {
     @Test
-    public void launchWithoutArgs() throws IOException {
+    public void launchWithoutArgs_NoOutputFilesAreWritten() throws IOException {
         FotoCollectorApplication.main(null);
 
-        final File output = new File(".", "fotocollector.html");
-        assertTrue(output.exists());
-        assertTrue(output.delete());
+        for(String fileName : Arrays.asList("fotocollector.html", "fotocollector.json")) {
+            final File output = new File(".", fileName);
+            assertFalse(output.exists());
+        }
     }
 }
