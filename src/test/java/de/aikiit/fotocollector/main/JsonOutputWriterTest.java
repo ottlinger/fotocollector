@@ -12,9 +12,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Date;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author hirsch
@@ -30,8 +29,8 @@ public class JsonOutputWriterTest {
     public void writeWithoutResults() throws IOException {
         final ScanResult result = new ScanResult();
         final OutputResult outputResult = writer.write(result);
-        assertTrue(outputResult.isEmpty());
-        assertFalse(outputResult.flush(cwd).isPresent());
+        assertThat(outputResult.isEmpty()).isTrue();
+        assertThat(outputResult.flush(cwd).isPresent()).isFalse();
     }
 
     @Test
@@ -42,14 +41,14 @@ public class JsonOutputWriterTest {
         result.addEntry(entry);
         result.addEntry(new ScanEntry("a" + fileName, new Date(0)));
         final OutputResult outputResult = writer.write(result);
-        assertFalse(outputResult.isEmpty());
+        assertThat(outputResult.isEmpty()).isFalse();
 
         final String json = outputResult.getResult();
         System.out.println(json);
         assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"},{\"fileName\":\"atestFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"}]", json);
 
-        assertTrue(outputResult.flush(cwd).isPresent());
-        assertTrue(new File(".", "fotocollector.json").delete());
+        assertThat(outputResult.flush(cwd).isPresent()).isTrue();
+        assertThat(new File(".", "fotocollector.json").delete()).isTrue();
     }
 
 }
