@@ -3,6 +3,7 @@ package de.aikiit.fotocollector;
 
 import com.google.common.collect.Sets;
 
+import java.util.Comparator;
 import java.util.Set;
 
 /**
@@ -14,7 +15,9 @@ import java.util.Set;
  */
 public class ScanResult {
 
-    private final Set<ScanEntry> entries = Sets.newHashSet();
+    private static Comparator<ScanEntry> BY_NAME = (e1, e2) -> (e1.getFileName().compareTo(e2.getFileName()));
+
+    private final Set<ScanEntry> entries = Sets.newTreeSet(BY_NAME);
 
     public Set<ScanEntry> getEntries() {
         return Sets.newHashSet(entries);
