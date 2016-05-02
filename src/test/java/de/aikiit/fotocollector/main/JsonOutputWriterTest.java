@@ -38,6 +38,8 @@ public class JsonOutputWriterTest {
         final String fileName = "testFileName.txt";
         final ScanResult result = new ScanResult();
         final ScanEntry entry = new ScanEntry(fileName, new Date(1));
+        final long size = 1234l;
+        entry.setSize(size);
         result.addEntry(entry);
         result.addEntry(new ScanEntry("a" + fileName, new Date(0)));
         final OutputResult outputResult = writer.write(result);
@@ -45,7 +47,7 @@ public class JsonOutputWriterTest {
 
         final String json = outputResult.getResult();
         System.out.println(json);
-        assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"},{\"fileName\":\"atestFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\"}]", json);
+        assertEquals("[{\"fileName\":\"testFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\",\"size\":0},{\"fileName\":\"atestFileName.txt\",\"creationDate\":\"1970-01-01 00:00:00\",\"size\":" + size + "}]", json);
 
         assertThat(outputResult.flush(cwd).isPresent()).isTrue();
         assertThat(new File(".", "fotocollector.json").delete()).isTrue();

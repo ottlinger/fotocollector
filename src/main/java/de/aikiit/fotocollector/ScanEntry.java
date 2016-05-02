@@ -18,6 +18,8 @@ public class ScanEntry {
 
     private final Date creationDate;
 
+    private long size = 0l;
+
     public ScanEntry(String fileName) {
         this(fileName, new Date());
     }
@@ -36,6 +38,14 @@ public class ScanEntry {
         return creationDate;
     }
 
+    public long getSize() {
+        return size;
+    }
+
+    public void setSize(final long size) {
+        this.size = size;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
@@ -43,14 +53,17 @@ public class ScanEntry {
 
         final ScanEntry scanEntry = (ScanEntry) o;
 
-        return fileName.equals(scanEntry.fileName) && creationDate.equals(scanEntry.creationDate);
+        if (size != scanEntry.size) return false;
+        if (fileName != null ? !fileName.equals(scanEntry.fileName) : scanEntry.fileName != null) return false;
+        return creationDate != null ? creationDate.equals(scanEntry.creationDate) : scanEntry.creationDate == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = fileName.hashCode();
-        result = 31 * result + creationDate.hashCode();
+        int result = fileName != null ? fileName.hashCode() : 0;
+        result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
+        result = 31 * result + (int) (size ^ (size >>> 32));
         return result;
     }
 
@@ -59,6 +72,7 @@ public class ScanEntry {
         return "ScanEntry{" +
                 "fileName='" + fileName + '\'' +
                 ", creationDate=" + creationDate +
+                ", size=" + size +
                 '}';
     }
 }

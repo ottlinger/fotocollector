@@ -28,6 +28,7 @@ public class HtmlOutputWriterTest {
     public void checkWithEntries() {
         final ScanResult input = new ScanResult();
         final ScanEntry image = new ScanEntry("ASplendidPic.jpeg", new Date(12345));
+        image.setSize(-1l);
         input.addEntry(image);
         final OutputResult write = new HtmlOutputWriter().write(input);
         assertThat(write.getResult()).isNotEmpty();
