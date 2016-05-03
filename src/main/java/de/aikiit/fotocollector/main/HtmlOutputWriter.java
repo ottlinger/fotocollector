@@ -16,9 +16,9 @@ public class HtmlOutputWriter implements OutputWriter {
     private static final String NAME = "fotocollector.html";
 
     private static final String HEADER = "<html><head></head><body>";
-    private static final String TABLE_HEADER = "<table><tr><th>Filename</th></tr>";
+    private static final String TABLE_HEADER = "<table><tr><th>Filename</th><th>Size</th></tr>";
     private static final String FOOTER = "</table><hr><p>Created at: %s with %s images</p></body></html>";
-    private static final String TABLE_ENTRY = "<tr><td>%s</td></tr>";
+    private static final String TABLE_ENTRY = "<tr><td>%s</td><td>%s</td></tr>";
 
     @Override
     public OutputResult write(final ScanResult result) {
@@ -31,7 +31,7 @@ public class HtmlOutputWriter implements OutputWriter {
         table.append(TABLE_HEADER);
 
         for (ScanEntry entry : result.getEntries()) {
-            table.append(String.format(TABLE_ENTRY, entry.getFileName()));
+            table.append(String.format(TABLE_ENTRY, entry.getFileName(), entry.getSize()));
         }
 
         table.append(String.format(FOOTER, LocalDateTime.now(), result.getEntries().size()));

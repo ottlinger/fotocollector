@@ -1,5 +1,6 @@
 package de.aikiit.fotocollector.main;
 
+import com.google.common.collect.Lists;
 import de.aikiit.fotocollector.OutputResult;
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
@@ -27,11 +28,16 @@ public class HtmlOutputWriterTest {
     @Test
     public void checkWithEntries() {
         final ScanResult input = new ScanResult();
-        final ScanEntry image = new ScanEntry("ASplendidPic.jpeg", new Date(12345));
+        final String fileName = "ASplendidPic.jpeg";
+        final ScanEntry image = new ScanEntry(fileName, new Date(12345));
         image.setSize(-1l);
         input.addEntry(image);
         final OutputResult write = new HtmlOutputWriter().write(input);
-        assertThat(write.getResult()).isNotEmpty();
-        System.out.println(write.getResult());
+        final String writeResult = write.getResult();
+        assertThat(writeResult).isNotEmpty();
+        for (String token : Lists.newArrayList("T", "-1", fileName)) {
+            assertThat(writeResult).contains(token);
+        }
+        System.out.println(writeResult);
     }
 }
