@@ -19,7 +19,7 @@ public class ScanEntry {
     /**
      * SHA-1 hashValue of contents of an entry.
      */
-    private final String hashOverContent = null;
+    private String hashOverContent = null;
 
     private final Date creationDate;
 
@@ -53,6 +53,10 @@ public class ScanEntry {
 
     public String getHashOverContent() {
         return hashOverContent;
+    }
+
+    public void setHashOverContent(final String hashOverContent) {
+        this.hashOverContent = hashOverContent;
     }
 
     @Override

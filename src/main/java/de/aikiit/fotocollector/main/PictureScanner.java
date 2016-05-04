@@ -66,8 +66,11 @@ public final class PictureScanner {
                 for (Path path : files) {
                     final Path fileName = path.getFileName();
                     BasicFileAttributes attr = Files.readAttributes(path, BasicFileAttributes.class);
-                    System.out.println(fileName + " created at "+ attr.creationTime());
-                    scanResult.addEntry(new ScanEntry(fileName.toString(), new Date(attr.creationTime().toMillis())));
+                    System.out.println(fileName + " created at " + attr.creationTime());
+                    ScanEntry entry = new ScanEntry(fileName.toString(), new Date(attr.creationTime().toMillis()));
+                    // TODO entry.setSize();
+// TODO                    entry.setHashOverContent(DigestUtils.sha1(fileName.toString().getBytes(Charsets.UTF_8.name())));
+                    scanResult.addEntry(entry);
                 }
             }
         } catch (IOException e) {
