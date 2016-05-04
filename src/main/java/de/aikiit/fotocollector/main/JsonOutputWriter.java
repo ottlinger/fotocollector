@@ -18,7 +18,7 @@ public class JsonOutputWriter implements OutputWriter {
     @Override
     public OutputResult write(final ScanResult result) {
 
-        if(result == null || result.isEmpty()) {
+        if (result == null || result.isEmpty()) {
             return new OutputResult(null, NAME);
         }
 

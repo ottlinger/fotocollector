@@ -13,8 +13,13 @@ import java.util.Date;
  */
 public class ScanEntry {
 
-    // TODO is it useful to add dates from EXIF?!
+    // TODO use lombok to get rid of the boilerplate
     private final String fileName;
+
+    /**
+     * SHA-1 hashValue of contents of an entry.
+     */
+    private final String hashOverContent = null;
 
     private final Date creationDate;
 
@@ -46,6 +51,10 @@ public class ScanEntry {
         this.size = size;
     }
 
+    public String getHashOverContent() {
+        return hashOverContent;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
@@ -55,6 +64,8 @@ public class ScanEntry {
 
         if (size != scanEntry.size) return false;
         if (fileName != null ? !fileName.equals(scanEntry.fileName) : scanEntry.fileName != null) return false;
+        if (hashOverContent != null ? !hashOverContent.equals(scanEntry.hashOverContent) : scanEntry.hashOverContent != null)
+            return false;
         return creationDate != null ? creationDate.equals(scanEntry.creationDate) : scanEntry.creationDate == null;
 
     }
@@ -62,6 +73,7 @@ public class ScanEntry {
     @Override
     public int hashCode() {
         int result = fileName != null ? fileName.hashCode() : 0;
+        result = 31 * result + (hashOverContent != null ? hashOverContent.hashCode() : 0);
         result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         result = 31 * result + (int) (size ^ (size >>> 32));
         return result;
@@ -71,6 +83,7 @@ public class ScanEntry {
     public String toString() {
         return "ScanEntry{" +
                 "fileName='" + fileName + '\'' +
+                ", hashOverContent='" + hashOverContent + '\'' +
                 ", creationDate=" + creationDate +
                 ", size=" + size +
                 '}';
