@@ -7,6 +7,7 @@ import org.junit.rules.TemporaryFolder;
 import java.io.File;
 import java.io.IOException;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -42,5 +43,10 @@ public class FileUtilTest {
         String fileName = FileUtil.makeUnique(folder.getRoot().toPath(), BASENAME).toAbsolutePath().toString();
         assertTrue(fileName.contains(BASENAME));
         assertTrue(fileName.endsWith("_4"));
+    }
+
+    @Test
+    public void hashWithDefault() {
+        assertThat(FileUtil.getHash(null)).isEqualTo(FileUtil.NONE);
     }
 }

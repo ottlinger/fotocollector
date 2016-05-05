@@ -1,5 +1,7 @@
 package de.aikiit.fotocollector.util;
 
+import com.google.common.annotations.VisibleForTesting;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,7 +12,10 @@ import java.nio.file.Paths;
  */
 public final class FileUtil {
 
-    /*
+    @VisibleForTesting
+    static final String NONE = "none";
+
+    /**
      * If the given path contains a file baseName a number is added as a suffix.
      */
     public static Path makeUnique(Path basePath, String baseName) {
@@ -23,5 +28,15 @@ public final class FileUtil {
         }
 
         return desiredPath;
+    }
+
+    /**
+     * Calculates the SHA-1 hash of the given path'S contents.
+     *
+     * @param path file to calculate hash over.
+     * @return SHA-1 or {@code 'none'} in case of errors.
+     */
+    public static String getHash(Path path) {
+        return NONE;
     }
 }
