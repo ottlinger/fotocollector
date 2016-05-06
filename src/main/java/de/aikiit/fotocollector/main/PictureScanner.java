@@ -3,6 +3,7 @@ package de.aikiit.fotocollector.main;
 import com.google.common.collect.Lists;
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
+import de.aikiit.fotocollector.util.FileUtil;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -68,8 +69,8 @@ public final class PictureScanner {
                     BasicFileAttributes attr = Files.readAttributes(path, BasicFileAttributes.class);
                     System.out.println(fileName + " created at " + attr.creationTime());
                     ScanEntry entry = new ScanEntry(fileName.toString(), new Date(attr.creationTime().toMillis()));
-                    // TODO entry.setSize();
-// TODO                    entry.setHashOverContent(DigestUtils.sha1(fileName.toString().getBytes(Charsets.UTF_8.name())));
+                    entry.setSize(Files.size(path));
+                    entry.setHashOverContent(FileUtil.getHash(path));
                     scanResult.addEntry(entry);
                 }
             }

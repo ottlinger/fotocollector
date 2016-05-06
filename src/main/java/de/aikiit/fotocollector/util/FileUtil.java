@@ -1,10 +1,13 @@
 package de.aikiit.fotocollector.util;
 
 import com.google.common.annotations.VisibleForTesting;
+import org.apache.commons.codec.digest.DigestUtils;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 /**
  * @author hirsch
@@ -37,6 +40,10 @@ public final class FileUtil {
      * @return SHA-1 or {@code 'none'} in case of errors.
      */
     public static String getHash(Path path) {
-        return NONE;
+        try {
+            return DigestUtils.sha256Hex(Files.newInputStream(path, StandardOpenOption.READ));
+        } catch (NullPointerException | IOException e) {
+            return NONE;
+        }
     }
 }
