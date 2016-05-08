@@ -46,7 +46,12 @@ public class FileUtilTest {
     }
 
     @Test
-    public void hashWithDefault() {
+    public void hashWithNull_returnDefault() {
         assertThat(FileUtil.getHash(null)).isEqualTo(FileUtil.NONE);
+    }
+
+    @Test
+    public void hashWithError_returnDefault() {
+        assertThat(FileUtil.getHash(new File("DoesNotExistDoesIt").toPath())).isEqualTo(FileUtil.NONE);
     }
 }
