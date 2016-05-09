@@ -6,6 +6,8 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -53,5 +55,10 @@ public class FileUtilTest {
     @Test
     public void hashWithError_returnDefault() {
         assertThat(FileUtil.getHash(new File("DoesNotExistDoesIt").toPath())).isEqualTo(FileUtil.NONE);
+    }
+
+    @Test
+    public void compareHashAfterCalculationFromExternalFile() throws URISyntaxException {
+        assertThat(FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()))).isEqualTo("5befc3514912917585421adfb4d030cc3f75d989d40494cd5ccd112e72bd1f4a");
     }
 }
