@@ -6,8 +6,7 @@ This metadata is supposed to be used to recreate collections of files.
 
 [![Build Status](https://travis-ci.org/ottlinger/fotocollector.svg?branch=master)](https://travis-ci.org/ottlinger/fotocollector)
 
-[![codecov.io](https://codecov.io/github/ottlinger/fotocollector/coverage.svg?bran
-ch=master)](https://codecov.io/github/ottlinger/fotocollector?branch=master)
+[![codecov](https://codecov.io/gh/ottlinger/fotocollector/branch/master/graph/badge.svg)](https://codecov.io/gh/ottlinger/fotocollector)
 
 [![Stories in
 Ready](https://badge.waffle.io/ottlinger/fotocollector.svg?label=ready&title=Read
