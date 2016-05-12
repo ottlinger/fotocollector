@@ -14,7 +14,7 @@ import static org.junit.Assert.assertFalse;
  */
 public class FotoCollectorApplicationTest {
     @Test
-    public void launchWithoutArgs_NoOutputFilesAreWritten() throws IOException {
+    public void launchWithoutArgsThenNoOutputFilesAreWritten() throws IOException {
         FotoCollectorApplication.main(null);
 
         for(String fileName : Arrays.asList("fotocollector.html", "fotocollector.json")) {

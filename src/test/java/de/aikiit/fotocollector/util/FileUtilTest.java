@@ -48,12 +48,12 @@ public class FileUtilTest {
     }
 
     @Test
-    public void hashWithNull_returnDefault() {
+    public void hashWithNullThenReturnDefault() {
         assertThat(FileUtil.getHash(null)).isEqualTo(FileUtil.NONE);
     }
 
     @Test
-    public void hashWithError_returnDefault() {
+    public void hashWithErrorThenReturnDefault() {
         assertThat(FileUtil.getHash(new File("DoesNotExistDoesIt").toPath())).isEqualTo(FileUtil.NONE);
     }
 
