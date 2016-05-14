@@ -1,22 +1,26 @@
+import org.gradle.logging.ShowStacktrace
+
 import java.text.SimpleDateFormat
 
 plugins {
-  id 'net.researchgate.release' version '2.3.4'
+    id 'net.researchgate.release' version '2.3.4'
 }
 
-import org.gradle.logging.ShowStacktrace
 gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
 
 Date buildTimeAndDate = new Date()
 ext {
-	buildDate = new SimpleDateFormat('yyyy-MM-dd').format(buildTimeAndDate)
-	buildTime = new SimpleDateFormat('HH:mm:ss.SSSZ').format(buildTimeAndDate)
+    buildDate = new SimpleDateFormat('yyyy-MM-dd').format(buildTimeAndDate)
+    buildTime = new SimpleDateFormat('HH:mm:ss.SSSZ').format(buildTimeAndDate)
 }
 
 apply plugin: 'application'
 apply plugin: 'java'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+    sourceCompatibility = rootProject.sourceCompatibility
+    targetCompatibility = rootProject.targetCompatibility
+}
 test {
     testLogging {
         events "failed"
@@ -46,12 +50,12 @@ jacocoTestReport {
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-defaultTasks 'clean','build'
+defaultTasks 'clean', 'build'
 
-mainClassName  = 'de.aikiit.fotocollector.FotoCollectorApplication'
+mainClassName = 'de.aikiit.fotocollector.FotoCollectorApplication'
 task uberjar(type: Jar) {
     from files(sourceSets.main.output.classesDir)
-    from {configurations.compile.collect {zipTree(it)}} {
+    from { configurations.compile.collect { zipTree(it) } } {
         exclude "META-INF/*.SF"
         exclude "META-INF/*.DSA"
         exclude "META-INF/*.RSA"
@@ -76,15 +80,15 @@ dependencies {
 jar {
     manifest {
         attributes(
-        'Implementation-Title': 'FotoCollector',
-        'Implementation-Version': version,
-        'Main-Class': mainClassName,
-				'Built-By': System.properties['user.name'],
-				'Created-By': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})".toString(),
-				'Build-Date': buildDate,
-				'Build-Time': buildTime,
-				'Specification-Title': project.name,
-				'Specification-Version': project.version
+                'Implementation-Title': 'FotoCollector',
+                'Implementation-Version': version,
+                'Main-Class': mainClassName,
+                'Built-By': System.properties['user.name'],
+                'Created-By': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})".toString(),
+                'Build-Date': buildDate,
+                'Build-Time': buildTime,
+                'Specification-Title': project.name,
+                'Specification-Version': project.version
         )
     }
 }
