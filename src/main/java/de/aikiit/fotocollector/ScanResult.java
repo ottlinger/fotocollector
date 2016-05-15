@@ -39,7 +39,6 @@ public class ScanResult {
         final ScanResult that = (ScanResult) o;
 
         return entries.equals(that.entries);
-
     }
 
     @Override
