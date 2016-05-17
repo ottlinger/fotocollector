@@ -20,7 +20,7 @@ y)](https://waffle.io/ottlinger/fotocollector)
 
 The tool can easily be built via gradle. It's main goal is clean install, so just run:
 ```
-gradle
+$ gradle
 ```
 after having checked out.
 
