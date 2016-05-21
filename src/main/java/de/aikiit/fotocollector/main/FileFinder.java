@@ -1,5 +1,7 @@
 package de.aikiit.fotocollector.main;
 
+import de.aikiit.fotocollector.ScanResult;
+
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Files;
@@ -23,6 +25,11 @@ public class FileFinder {
         walk(Paths.get(path))
                 .filter(Files::isRegularFile)
                 .forEach(System.out::println);
+    }
+
+    public static void scan(ScanResult result) {
+
+
     }
 
 
