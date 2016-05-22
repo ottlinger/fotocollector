@@ -1,5 +1,6 @@
 package de.aikiit.fotocollector.main;
 
+import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
 
 import java.io.IOException;
@@ -17,22 +18,27 @@ import static java.nio.file.Files.walk;
  */
 public class FileFinder {
 
-    public static void main(String... args) throws IOException{
+    public static void main(String... args) throws IOException {
 
         // https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#find-java.nio.file.Path-int-java.util.function.BiPredicate-java.nio.file.FileVisitOption...-
-        final URI path = Paths.get("/tmp/").toUri();
+        final URI path = args == null || args.length < 1 ? Paths.get("/tmp/").toUri() : Paths.get(args[0]).toUri();
 
         walk(Paths.get(path))
                 .filter(Files::isRegularFile)
                 .forEach(System.out::println);
     }
 
-    public static void scan(ScanResult result) {
+    public static void scan(ScanResult result) throws IOException {
 
+        if (result == null || result.isEmpty()) {
+            System.out.println("Nothing to do");
+        } else {
+            for (ScanEntry entry : result.getEntries()) {
+                main(entry.getFileName());
+            }
+        }
 
     }
-
-
 
 
 }
