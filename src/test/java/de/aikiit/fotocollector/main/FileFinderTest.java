@@ -13,6 +13,9 @@ import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import org.junit.rules.TemporaryFolder;
+import org.junit.Rule;
+
 /**
  * @author hirsch
  * @version 2016-05-23, 00:06
@@ -22,11 +25,19 @@ public class FileFinderTest {
     @Mock
     private PrintStream console;
 
+    @Rule
+    public TemporaryFolder folder = new TemporaryFolder();
+
     @Test
     public void emptyResultAndNullParameters() throws IOException {
         System.setOut(console);
         FileFinder.scan(null);
         FileFinder.scan(new ScanResult());
         verify(console, times(2)).println(contains("Nothing to do"));
+    }
+
+    @Test
+    public void scanForCreatedResult() {
+        // tbd
     }
 }
