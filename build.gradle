@@ -105,3 +105,5 @@ jar {
         )
     }
 }
+
+check.dependsOn jacocoTestReport
