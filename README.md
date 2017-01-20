@@ -9,8 +9,7 @@ This metadata is supposed to be used to recreate collections of files.
 [![codecov](https://codecov.io/gh/ottlinger/fotocollector/branch/master/graph/badge.svg)](https://codecov.io/gh/ottlinger/fotocollector)
 
 [![Stories in
-Ready](https://badge.waffle.io/ottlinger/fotocollector.svg?label=ready&title=Read
-y)](https://waffle.io/ottlinger/fotocollector)
+Ready](https://badge.waffle.io/ottlinger/fotocollector.svg?label=ready&title=Ready)](https://waffle.io/ottlinger/fotocollector)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/1069017d3898425095363374b2519b03)](https://www.codacy.com/app/github_25/fotocollector)
 
