@@ -1,12 +1,10 @@
-import org.gradle.logging.ShowStacktrace
-
 import java.text.SimpleDateFormat
 
 plugins {
     id 'net.researchgate.release' version '2.3.4'
 }
 
-gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
+gradle.startParameter.showStacktrace = org.gradle.api.logging.configuration.ShowStacktrace.ALWAYS
 
 Date buildTimeAndDate = new Date()
 ext {
@@ -59,6 +57,7 @@ apply plugin: 'idea'
 defaultTasks 'clean', 'build'
 
 mainClassName = 'de.aikiit.fotocollector.FotoCollectorApplication'
+// https://stackoverflow.com/questions/10986244/building-a-uberjar-with-gradle
 task uberjar(type: Jar) {
     from files(sourceSets.main.output.classesDir)
     from { configurations.compile.collect { zipTree(it) } } {
@@ -87,6 +86,7 @@ compileJava.doLast {
     // Enable JAR manifest generation
     generateManifest = true
 }
+
 jar {
     onlyIf {
         project.generateManifest
