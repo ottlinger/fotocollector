@@ -1,7 +1,7 @@
 import java.text.SimpleDateFormat
 
 plugins {
-    id 'net.researchgate.release' version '2.3.4'
+    id 'net.researchgate.release' version '2.5.0'
 }
 
 gradle.startParameter.showStacktrace = org.gradle.api.logging.configuration.ShowStacktrace.ALWAYS
