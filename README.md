@@ -12,7 +12,9 @@ This metadata is supposed to be used to recreate collections of files.
 Ready](https://badge.waffle.io/ottlinger/fotocollector.svg?label=ready&title=Ready)](https://waffle.io/ottlinger/fotocollector)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/1069017d3898425095363374b2519b03)](https://www.codacy.com/app/github_25/fotocollector)
-
+                
+[![Known Vulnerabilities](https://snyk.io/test/github/ottlinger/fotocollector/badge.svg)](https://snyk.io/test/github/ottlinger/fotocollector)
+              
 ## Howtos
 
 ### Build yourself
