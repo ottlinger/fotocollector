@@ -22,6 +22,7 @@ Ready](https://badge.waffle.io/ottlinger/fotocollector.svg?label=ready&title=Rea
 The tool can easily be built via gradle. It's main goal is clean install, so just run:
 ```
 $ gradle
+$ gradlew (to use the wrapper)
 ```
 after having checked out.
 
