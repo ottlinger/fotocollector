@@ -73,7 +73,7 @@ repositories {
 
 dependencies {
     compile 'commons-codec:commons-codec:1.11'
-    compile 'com.google.guava:guava:24.1-jre'
+    compile 'com.google.guava:guava:25.0-jre'
     compile 'com.fasterxml.jackson.core:jackson-core:2.9.5'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.5'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.5'
