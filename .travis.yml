@@ -4,8 +4,9 @@ sudo: false
 jdk:
   - oraclejdk8
   - oraclejdk9
-  - oraclejdk10
+  - openjdk10
   - oraclejdk11
+  - oraclejdk12
 
 env:
   - DSPLAY=:0
