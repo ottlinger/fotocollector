@@ -6,7 +6,7 @@ plugins {
     id 'java'
 }
 
-gradle.startParameter.showStacktrace = org.gradle.api.logging.configuration.ShowStacktrace.ALWAYS
+gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
 
 Date buildTimeAndDate = new Date()
 ext {
