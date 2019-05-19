@@ -38,7 +38,7 @@ public class JsonOutputWriterTest {
         final String fileName = "testFileName.txt";
         final ScanResult result = new ScanResult();
         final ScanEntry entry = new ScanEntry(fileName, new Date(1));
-        final long size = 1234l;
+        final long size = 1234L;
         entry.setSize(size);
         result.addEntry(entry);
         result.addEntry(new ScanEntry("a" + fileName, new Date(0)));

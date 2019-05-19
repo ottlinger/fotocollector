@@ -24,7 +24,7 @@ public class ScanEntry {
 
     private final Date creationDate;
 
-    private long size = 0l;
+    private long size = 0L;
 
     public ScanEntry(String fileName) {
         this(fileName, new Date());

@@ -30,7 +30,7 @@ public class HtmlOutputWriterTest {
         final ScanResult input = new ScanResult();
         final String fileName = "ASplendidPic.jpeg";
         final ScanEntry image = new ScanEntry(fileName, new Date(12345));
-        image.setSize(-1l);
+        image.setSize(-1L);
         input.addEntry(image);
         final OutputResult write = new HtmlOutputWriter().write(input);
         final String writeResult = write.getResult();
