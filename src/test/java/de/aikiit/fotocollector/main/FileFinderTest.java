@@ -4,7 +4,6 @@ import de.aikiit.fotocollector.ScanResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -15,6 +14,7 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.rules.TemporaryFolder;
 import org.junit.Rule;
+import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  * @author hirsch
