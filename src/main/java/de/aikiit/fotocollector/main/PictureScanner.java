@@ -1,20 +1,13 @@
 package de.aikiit.fotocollector.main;
 
-import com.google.common.collect.Lists;
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
 import de.aikiit.fotocollector.util.FileUtil;
 
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
+import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author hirsch
@@ -38,13 +31,14 @@ public final class PictureScanner {
     // TODO add recursive file scanning as an option
     // http://www.ntu.edu.sg/home/ehchua/programming/java/J5b_IO.html
     public ScanResult getFilesRecursively() {
-        List<String> results = Lists.newArrayList();
+
+        final ScanResult scanResult = new ScanResult();
         try {
             Files.walkFileTree(this.basePath, new SimpleFileVisitor<Path>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                     if (!attrs.isDirectory() && PICTURE_MATCHER.accept(file.toFile())) {
-                        results.add(file.toString());
+                        scanResult.addEntry(convert(file));
                         System.out.println(file.toFile());
                     }
                     return FileVisitResult.CONTINUE;
@@ -54,8 +48,17 @@ public final class PictureScanner {
             // intentional fallthrough
         }
 
-        // FIXME
         return new ScanResult();
+    }
+
+    private ScanEntry convert(Path path) throws IOException {
+        final Path fileName = path.getFileName();
+        BasicFileAttributes attr = Files.readAttributes(path, BasicFileAttributes.class);
+        System.out.println(fileName + " created at " + attr.creationTime());
+        ScanEntry entry = new ScanEntry(fileName.toString(), new Date(attr.creationTime().toMillis()));
+        entry.setSize(Files.size(path));
+        entry.setHashOverContent(FileUtil.getHash(path));
+        return entry;
     }
 
     public ScanResult getFiles() {
@@ -65,13 +68,7 @@ public final class PictureScanner {
         try {
             try (DirectoryStream<Path> files = Files.newDirectoryStream(this.basePath, "*.{gif,jpg,png,jpeg}")) {
                 for (Path path : files) {
-                    final Path fileName = path.getFileName();
-                    BasicFileAttributes attr = Files.readAttributes(path, BasicFileAttributes.class);
-                    System.out.println(fileName + " created at " + attr.creationTime());
-                    ScanEntry entry = new ScanEntry(fileName.toString(), new Date(attr.creationTime().toMillis()));
-                    entry.setSize(Files.size(path));
-                    entry.setHashOverContent(FileUtil.getHash(path));
-                    scanResult.addEntry(entry);
+                    scanResult.addEntry(convert(path));
                 }
             }
         } catch (IOException e) {
