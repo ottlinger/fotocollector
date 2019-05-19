@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.io.File;
 import java.util.Arrays;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -18,7 +19,7 @@ public class PictureFileFilterTest {
 
     @Test
     public void isNullSafe() {
-        assertFalse(FILE_FILTER.accept(null));
+        assertThat(FILE_FILTER.accept(null)).isFalse();
     }
 
     @Test
