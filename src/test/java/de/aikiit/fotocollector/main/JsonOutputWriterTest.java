@@ -46,10 +46,9 @@ public class JsonOutputWriterTest {
         assertThat(outputResult.isEmpty()).isFalse();
 
         final String json = outputResult.getResult();
-        System.out.println(json);
-        assertEquals("[{\"fileName\":\"atestFileName.txt\",\"hashOverContent\":null,\"creationDate\":\"1970-01-01 00:00:00\",\"size\":0},{\"fileName\":\"testFileName.txt\",\"hashOverContent\":null,\"creationDate\":\"1970-01-01 00:00:00\",\"size\":" + size + "}]", json);
+        assertThat(json).isEqualTo("[{\"fileName\":\"atestFileName.txt\",\"hashOverContent\":null,\"creationDate\":\"1970-01-01 00:00:00\",\"size\":0},{\"fileName\":\"testFileName.txt\",\"hashOverContent\":null,\"creationDate\":\"1970-01-01 00:00:00\",\"size\":" + size + "}]", json);
 
-        assertThat(outputResult.flush(cwd).isPresent()).isTrue();
+        assertThat(outputResult.flush(cwd)).isPresent();
         assertThat(new File(".", "fotocollector.json").delete()).isTrue();
     }
 
