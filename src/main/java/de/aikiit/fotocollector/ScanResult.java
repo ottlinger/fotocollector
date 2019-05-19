@@ -17,7 +17,7 @@ import java.util.Set;
 @Data
 public class ScanResult {
 
-    private static Comparator<ScanEntry> BY_NAME = (e1, e2) -> (e1.getFileName().compareTo(e2.getFileName()));
+    private static Comparator<ScanEntry> BY_NAME = Comparator.comparing(ScanEntry::getFileName);
 
     private final Set<ScanEntry> entries = Sets.newTreeSet(BY_NAME);
 
