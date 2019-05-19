@@ -33,12 +33,6 @@ test {
         events "failed"
         exceptionFormat "short"
 
-// set options for log level DEBUG
-        debug {
-            events "started", "skipped", "failed"
-            exceptionFormat "full"
-        }
-
         // remove standard output/error logging from --info builds
         // by assigning only 'failed' and 'skipped' events
         info.events = ["failed", "skipped"]
@@ -52,8 +46,8 @@ jacoco {
 }
 jacocoTestReport {
     reports {
-        xml.enabled true
-        html.enabled false
+        xml.enabled = true
+        html.enabled = false
     }
 }
 
