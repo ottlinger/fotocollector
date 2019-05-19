@@ -10,7 +10,6 @@ import java.net.URISyntaxException;
 import java.nio.file.Paths;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author hirsch
@@ -36,15 +35,15 @@ public class FileUtilTest {
     @Test
     public void ensureUniquenessForMultipleSuffices() throws IOException {
         File f = folder.newFile(BASENAME);
-        assertTrue(f.exists());
+        assertThat(f).exists();
 
         for (int no = 0; no < 4; no++) {
-            assertTrue(folder.newFile(BASENAME + "_" + no).exists());
+            assertThat(folder.newFile(BASENAME + "_" + no)).exists();
         }
 
         String fileName = FileUtil.makeUnique(folder.getRoot().toPath(), BASENAME).toAbsolutePath().toString();
-        assertTrue(fileName.contains(BASENAME));
-        assertTrue(fileName.endsWith("_4"));
+        assertThat(fileName).contains(BASENAME);
+        assertThat(fileName).endsWith("_4");
     }
 
     @Test
