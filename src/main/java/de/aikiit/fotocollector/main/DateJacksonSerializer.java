@@ -17,7 +17,7 @@ import java.util.TimeZone;
  */
 public class DateJacksonSerializer extends JsonSerializer<Date> {
     @Override
-    public void serialize(final Date value, final JsonGenerator gen, final SerializerProvider serializers) throws IOException, JsonProcessingException {
+    public void serialize(final Date value, final JsonGenerator gen, final SerializerProvider serializers) throws IOException {
 
         if (value == null) {
             gen.writeString("none");
