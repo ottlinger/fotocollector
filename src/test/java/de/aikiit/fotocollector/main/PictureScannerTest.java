@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.nio.file.Paths;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -15,17 +16,18 @@ import static org.junit.Assert.assertTrue;
 public class PictureScannerTest {
     @Test
     public void withParamNoPicturesInTemp() {
-        assertTrue(new PictureScanner(Paths.get("/tmp")).getFiles().isEmpty());
+        assertThat(new PictureScanner(Paths.get("/tmp")).getFiles().isEmpty()).isTrue();
     }
 
     @Test
     public void withDefaultParam() {
         ScanResult pictures = new PictureScanner(null).getFiles();
-        assertNotNull(pictures);
+        assertThat(pictures).isNotNull();
     }
+
     @Test
     public void scanRecursively() {
         ScanResult pictures = new PictureScanner(Paths.get(System.getProperty("user.home")).resolve("Documents/Pictures/2016")).getFilesRecursively();
-        assertNotNull(pictures);
+        assertThat(pictures).isNotNull();
     }
 }
