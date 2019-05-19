@@ -26,11 +26,11 @@ public class FileUtilTest {
     @Test
     public void ensureUniqueness() throws IOException {
         File f = folder.newFile(BASENAME);
-        assertTrue(f.exists());
+        assertThat(f).exists();
 
         String fileName = FileUtil.makeUnique(folder.getRoot().toPath(), BASENAME).toAbsolutePath().toString();
-        assertTrue(fileName.contains(BASENAME));
-        assertTrue(fileName.endsWith("_0"));
+        assertThat(fileName).contains(BASENAME);
+        assertThat(fileName).endsWith("_0");
     }
 
     @Test
