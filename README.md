@@ -25,7 +25,7 @@ $ ./gradlew - to use the wrapper
 ```
 after having checked out.
 
-In case you are using the wrapper, the following [wrapper version](./blob/master/gradle/wrapper/gradle-wrapper.properties) is used.
+In case you are using the wrapper, the following [wrapper version](./gradle/wrapper/gradle-wrapper.properties) is used.
 
 ### Run the tool
 Since the tool is still in development there's no command-line at the moment.
