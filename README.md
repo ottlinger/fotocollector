@@ -21,9 +21,11 @@ https://github.com/users/ottlinger/projects/3
 The tool can easily be built via gradle. It's main goal is clean install, so just run:
 ```
 $ gradle
-$ ./gradlew - to use the [wrapper version](./blob/master/gradle/wrapper/gradle-wrapper.properties)
+$ ./gradlew - to use the wrapper
 ```
 after having checked out.
+
+In case you are using the wrapper, the following [wrapper version](./blob/master/gradle/wrapper/gradle-wrapper.properties) is used.
 
 ### Run the tool
 Since the tool is still in development there's no command-line at the moment.
