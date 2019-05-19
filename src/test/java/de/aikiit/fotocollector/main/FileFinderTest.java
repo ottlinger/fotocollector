@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import static org.mockito.Matchers.contains;
+import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
