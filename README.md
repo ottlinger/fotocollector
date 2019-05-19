@@ -21,12 +21,20 @@ https://github.com/users/ottlinger/projects/3
 The tool can easily be built via gradle. It's main goal is clean install, so just run:
 ```
 $ gradle
-$ gradlew (to use the wrapper)
+$ ./gradlew - to use the [wrapper version](./blob/master/gradle/wrapper/gradle-wrapper.properties)
 ```
 after having checked out.
 
 ### Run the tool
 Since the tool is still in development there's no command-line at the moment.
+
+#### UberJAR
+
+The application is generated as a shadow-JAR, that may be launched in the following way:
+```
+$ ./gradlew
+$ java -jar build/libs/fotocollector-0.0.2-SNAPSHOT-all.jar
+```
 
 ## Releases
 ### 0.0.2-SNAPSHOT
