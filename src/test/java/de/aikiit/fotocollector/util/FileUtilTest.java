@@ -21,7 +21,7 @@ public class FileUtilTest {
     private static final String BASENAME = String.valueOf(System.currentTimeMillis());
 
     @Rule
-    public TemporaryFolder folder = new TemporaryFolder();
+    public final TemporaryFolder folder = new TemporaryFolder();
 
     @Test
     public void ensureUniqueness() throws IOException {
