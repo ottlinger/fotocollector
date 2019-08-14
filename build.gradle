@@ -52,7 +52,7 @@ repositories {
 }
 
 dependencies {
-    compile 'commons-codec:commons-codec:1.12'
+    compile 'commons-codec:commons-codec:1.13'
     compile 'com.google.guava:guava:28.0-jre'
     compile 'com.fasterxml.jackson.core:jackson-core:2.9.9'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.9.1'
