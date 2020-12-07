@@ -3,11 +3,10 @@ sudo: false
 
 jdk:
   - openjdk8
-  - openjdk9
-  - openjdk10
   - openjdk11
-  - openjdk12
-  - openjdk13
+  - openjdk14
+  - openjdk15
+  - openjdk16
 
 before_script:
   - pip install --user codecov
