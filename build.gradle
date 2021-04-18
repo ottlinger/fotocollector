@@ -71,7 +71,7 @@ jar {
     manifest {
         attributes(
                 'Implementation-Title': 'FotoCollector',
-                'Implementation-Version': version,
+                'Implementation-Version': project.version,
                 'Main-Class': mainClassName,
                 'Built-By': System.properties['user.name'],
                 'Created-By': "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})".toString(),
