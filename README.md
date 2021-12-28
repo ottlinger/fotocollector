@@ -5,7 +5,7 @@ This metadata is supposed to be used to recreate collections of files.
 
 ## Status
 
-[![Build Status](https://travis-ci.org/ottlinger/fotocollector.svg?branch=master)](https://travis-ci.org/ottlinger/fotocollector)
+[![Build Status](https://api.travis-ci.org/ottlinger/fotocollector.svg?branch=master)](https://api.travis-ci.org/ottlinger/fotocollector)
 
 [![codecov](https://codecov.io/gh/ottlinger/fotocollector/branch/master/graph/badge.svg)](https://codecov.io/gh/ottlinger/fotocollector)
 
