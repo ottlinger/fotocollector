@@ -31,7 +31,7 @@ tasks.withType(JavaCompile) {
 // Codecov integration
 apply plugin: 'jacoco'
 jacoco {
-    toolVersion = "0.8.7"
+    toolVersion = "0.8.8"
 }
 jacocoTestReport {
     reports {
