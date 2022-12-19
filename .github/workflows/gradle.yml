@@ -1,4 +1,11 @@
 name: Gradle CI
+
+on:
+  push:
+#    branches-ignore:
+#      - dependabot/**
+  pull_request:
+
 jobs:   
   gradle:
     runs-on: ubuntu-latest
