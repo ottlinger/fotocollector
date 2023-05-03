@@ -31,12 +31,12 @@ tasks.withType(JavaCompile) {
 // Codecov integration
 apply plugin: 'jacoco'
 jacoco {
-    toolVersion = "0.8.8"
+    toolVersion = "0.8.10"
 }
 jacocoTestReport {
     reports {
-        xml.enabled = true
-        html.enabled = false
+        // v8: xml.enabled = true
+        // v8: html.enabled = false
     }
 }
 
