@@ -21,3 +21,5 @@ jobs:
       with:
         name: build-reports
         path: build/reports/
+    - name: Code coverage with codecov
+      uses: codecov/codecov-action@v3
