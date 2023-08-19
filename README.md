@@ -9,7 +9,7 @@ GHA [![Github Action master branch status](https://github.com/ottlinger/fotocoll
 
 Travis [![Build Status](https://api.travis-ci.org/ottlinger/fotocollector.svg?branch=master)](https://api.travis-ci.org/ottlinger/fotocollector)
 
-[![codecov](https://codecov.io/gh/ottlinger/fotocollector/branch/master/graph/badge.svg)](https://codecov.io/gh/ottlinger/fotocollector)
+[![codecov](https://codecov.io/github/ottlinger/fotocollector/graph/badge.svg?token=fGTWQYT78p)](https://codecov.io/github/ottlinger/fotocollector)
 
 [![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/ottlinger/fotocollector.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ottlinger/fotocollector/context:java)
 
