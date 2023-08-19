@@ -35,8 +35,8 @@ jacoco {
 }
 jacocoTestReport {
     reports {
-        // v8: xml.enabled = true
-        // v8: html.enabled = false
+        xml.enabled = true
+        html.enabled = false
     }
 }
 
