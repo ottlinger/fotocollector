@@ -68,7 +68,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
     testImplementation group: 'junit', name: 'junit', version: '4.+'
     testImplementation 'org.mockito:mockito-core:5.8.0'
-    testImplementation 'org.assertj:assertj-core:3.24.2'
+    testImplementation 'org.assertj:assertj-core:3.25.0'
 }
 
 jar {
