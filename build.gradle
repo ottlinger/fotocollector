@@ -30,8 +30,6 @@ tasks.withType(JavaCompile) {
     targetCompatibility = rootProject.targetCompatibility
 }
 
-
-
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
 }
@@ -42,11 +40,6 @@ jacocoTestReport {
 jacoco {
     toolVersion = "0.8.12"
 //    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
-    reports {
-        xml.required = false
-        csv.required = false
-//        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
-    }
 }
 
 apply plugin: 'eclipse'
