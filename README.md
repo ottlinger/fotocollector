@@ -9,8 +9,6 @@ This metadata is supposed to be used to recreate collections of files.
 
 [![codecov](https://codecov.io/github/ottlinger/fotocollector/graph/badge.svg?token=fGTWQYT78p)](https://codecov.io/github/ottlinger/fotocollector)
 
-[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/ottlinger/fotocollector.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ottlinger/fotocollector/context:java)
-
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/331a0467219c44a8978d79de617ad7e4)](https://www.codacy.com/gh/ottlinger/fotocollector/dashboard)                
 
 [![Known Vulnerabilities](https://snyk.io/test/github/ottlinger/fotocollector/badge.svg)](https://snyk.io/test/github/ottlinger/fotocollector)
