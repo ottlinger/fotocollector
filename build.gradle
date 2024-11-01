@@ -4,6 +4,7 @@ plugins {
     id 'net.researchgate.release' version '3.0.2'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'java'
+    id 'jacoco'
 }
 
 gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
@@ -28,23 +29,24 @@ tasks.withType(JavaCompile) {
     sourceCompatibility = rootProject.sourceCompatibility
     targetCompatibility = rootProject.targetCompatibility
 }
-// Codecov integration
-apply plugin: 'jacoco'
-jacoco {
-    toolVersion = "0.8.10"
-}
 
-jacocoTestReport {
-    reports {
-        xml.required = false
-        csv.required = false
-        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
-    }
-    dependsOn test // tests are required to run before generating the report
-}
+
 
 test {
     finalizedBy jacocoTestReport // report is always generated after tests run
+}
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+
+jacoco {
+    toolVersion = "0.8.12"
+//    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+    reports {
+        xml.required = false
+        csv.required = false
+//        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
 }
 
 apply plugin: 'eclipse'
