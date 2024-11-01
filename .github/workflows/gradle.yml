@@ -23,3 +23,5 @@ jobs:
         path: build/reports/
     - name: Code coverage with codecov
       uses: codecov/codecov-action@v4
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
