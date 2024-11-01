@@ -40,6 +40,10 @@ jacocoTestReport {
 jacoco {
     toolVersion = "0.8.12"
     // reportsDirectory = layout.buildDirectory.dir('reports/jacoco/test/html/')
+    reports {
+        xml.required = true
+        html.required = false
+    }
 }
 
 apply plugin: 'eclipse'
