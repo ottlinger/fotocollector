@@ -7,9 +7,9 @@ This metadata is supposed to be used to recreate collections of files.
 
 [![Github Action master branch status](https://github.com/ottlinger/fotocollector/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/ottlinger/fotocollector/actions)
 
-[![codecov](https://codecov.io/github/ottlinger/fotocollector/graph/badge.svg?token=fGTWQYT78p)](https://codecov.io/github/ottlinger/fotocollector)
+[![codecov](https://codecov.io/gh/ottlinger/fotocollector/branch/master/graph/badge.svg?token=fGTWQYT78p)](https://codecov.io/gh/ottlinger/fotocollector)
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/331a0467219c44a8978d79de617ad7e4)](https://www.codacy.com/gh/ottlinger/fotocollector/dashboard)                
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/331a0467219c44a8978d79de617ad7e4)](https://www.codacy.com/gh/ottlinger/fotocollector/dashboard)
 
 [![Known Vulnerabilities](https://snyk.io/test/github/ottlinger/fotocollector/badge.svg)](https://snyk.io/test/github/ottlinger/fotocollector)
 
