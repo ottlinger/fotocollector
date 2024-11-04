@@ -1,6 +1,6 @@
 # Fotocollector
 
-Helper to generate metadata about foto collections to not copy image files again and again :-)
+Helper to generate metadata about photo collections to not copy image files again and again :-)
 This metadata is supposed to be used to recreate collections of files.
 
 ## Status
