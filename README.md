@@ -13,8 +13,6 @@ This metadata is supposed to be used to recreate collections of files.
 
 [![Known Vulnerabilities](https://snyk.io/test/github/ottlinger/fotocollector/badge.svg)](https://snyk.io/test/github/ottlinger/fotocollector)
 
-https://github.com/users/ottlinger/projects/3
-
 ## Howtos
 
 ### Build yourself
