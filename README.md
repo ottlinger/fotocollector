@@ -39,6 +39,7 @@ $ java -jar build/libs/fotocollector-0.0.2-SNAPSHOT-all.jar
 ```
 
 ## Releases
+
 ### 0.0.2-SNAPSHOT
 
 Currently: work in progress :-D
@@ -52,6 +53,7 @@ $ gradle release
 ```
 
 ## History
+
 ### 2015-11
 
 Project idea grew when I wanted to generate some Xmas-related image collections.
