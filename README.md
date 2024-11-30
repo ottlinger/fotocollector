@@ -17,11 +17,13 @@ This metadata is supposed to be used to recreate collections of files.
 
 ### Build yourself
 
-The tool can easily be built via gradle. It's main goal is clean install, so just run:
-```
+The tool can easily be built via gradle. Its main goal is a clean install, so just run:
+
+```bash
 $ gradle
 $ ./gradlew - to use the wrapper
 ```
+
 after having checked out.
 
 In case you are using the wrapper, the following [wrapper version](./gradle/wrapper/gradle-wrapper.properties) is used.
@@ -33,10 +35,16 @@ Since the tool is still in development there's no command-line at the moment.
 #### UberJAR
 
 The application is generated as a shadow-JAR, that may be launched in the following way:
-```
+
+```bash
 $ ./gradlew
-$ java -jar build/libs/fotocollector-0.0.2-SNAPSHOT-all.jar
+$ java -jar build/libs/fotocollector-0.0.2-SNAPSHOT-all.jar .
 ```
+
+to run in the current directory and generate the following output formats:
+
+* fotocollector.html - HTMl report
+* fotocollector.json - JSON report
 
 ## Releases
 
@@ -48,6 +56,7 @@ Currently: work in progress :-D
 
 This [first release](https://github.com/ottlinger/fotocollector/tree/0.0.1) contains some Tika experiments and a basic skeleton for JSON and HTML generation.
 Furthermore I experienced the ease of releasing with gradle, it nails down to a
+
 ```
 $ gradle release
 ```
