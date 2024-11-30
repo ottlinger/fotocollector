@@ -18,10 +18,11 @@ This metadata is supposed to be used to recreate collections of files.
 
 ### Build yourself
 
-The tool can easily be built via gradle. Its main goal is a clean install, so just run:
+The tool can easily be built via [Gradle](https://gradle.org). Its main goal is a clean install, so just run:
 
 ```bash
 $ gradle
+OR
 $ ./gradlew - to use the wrapper
 ```
 
@@ -39,6 +40,8 @@ The application is generated as a shadow-JAR, that may be launched in the follow
 
 ```bash
 $ ./gradlew
+BUILD SUCCESSFUL in 5s
+13 actionable tasks: 13 executed
 $ java -jar build/libs/fotocollector-0.0.2-SNAPSHOT-all.jar .
 ```
 
