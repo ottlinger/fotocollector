@@ -22,14 +22,16 @@ public class FileFinder {
 
         // https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#find-java.nio.file.Path-int-java.util.function.BiPredicate-java.nio.file.FileVisitOption...-
         final URI path = args == null || args.length < 1 ? Paths.get("/tmp/").toUri() : Paths.get(args[0]).toUri();
-
-        walk(Paths.get(path))
-                .filter(Files::isRegularFile)
-                .forEach(System.out::println);
+        try {
+            walk(Paths.get(path))
+                    .filter(Files::isRegularFile)
+                    .forEach(System.out::println);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void scan(ScanResult result) throws IOException {
-
         if (result == null || result.isEmpty()) {
             System.out.println("Nothing to do");
         } else {
@@ -39,6 +41,4 @@ public class FileFinder {
         }
 
     }
-
-
 }

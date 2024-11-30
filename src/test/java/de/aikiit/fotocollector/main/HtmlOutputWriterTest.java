@@ -22,7 +22,7 @@ public class HtmlOutputWriterTest {
     public void checkEmptyResult() {
         for (ScanResult input : Arrays.asList(null, new ScanResult())) {
             final OutputResult result = new HtmlOutputWriter().write(input);
-            assertThat(result.isEmpty());
+            assertThat(result.isEmpty()).isTrue();
         }
     }
 

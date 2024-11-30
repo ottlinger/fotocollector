@@ -22,7 +22,7 @@ public class FotoCollectorApplicationTest {
     @Test
     public void launchWithArgsThenAllOutputFilesAreWritten() throws IOException {
         // create fake image
-        String name = UUID.randomUUID().toString() + ".png";
+        String name = UUID.randomUUID() + ".png";
         assertThat(folder.resolve(name).toFile().createNewFile()).isTrue();
 
         FotoCollectorApplication.main(new String[] {folder.toFile().toString()});
