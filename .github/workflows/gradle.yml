@@ -22,7 +22,7 @@ jobs:
     - name: Run build with Gradle wrapper
       run: ./gradlew build --scan
 
-# can only be done once, thus breaks matrix builds
+    # MUST only be done once using ubuntu as reference operating system
     - name: Upload build reports
       uses: actions/upload-artifact@v4
       if: matrix.os == 'ubuntu-latest'
@@ -32,5 +32,6 @@ jobs:
 
     - name: Code coverage with codecov
       uses: codecov/codecov-action@v4
+      if: matrix.os == 'ubuntu-latest'
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
