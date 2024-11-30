@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file MD013 -->
 # FotoCollector
 
 Helper to generate metadata about photo collections to not copy image files again and again :-)
