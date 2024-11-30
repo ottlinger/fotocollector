@@ -61,8 +61,8 @@ Currently: work in progress :-D
 This [first release](https://github.com/ottlinger/fotocollector/tree/0.0.1) contains some Tika experiments and a basic skeleton for JSON and HTML generation.
 Furthermore I experienced the ease of releasing with gradle, it nails down to a
 
-```
-$ gradle release
+```bash
+gradle release
 ```
 
 ## History
