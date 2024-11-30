@@ -1,47 +1,41 @@
 package de.aikiit.fotocollector.util;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-/**
- * @author hirsch
- * @version 2016-04-24, 00:07
- */
 public class FileUtilTest {
 
     private static final String BASENAME = String.valueOf(System.currentTimeMillis());
 
-    @Rule
-    public final TemporaryFolder folder = new TemporaryFolder();
+    @TempDir
+    private Path folder;
 
     @Test
     public void ensureUniqueness() throws IOException {
-        File f = folder.newFile(BASENAME);
-        assertThat(f).exists();
+        assertThat(folder.resolve(BASENAME).toFile().createNewFile()).isTrue();
 
-        String fileName = FileUtil.makeUnique(folder.getRoot().toPath(), BASENAME).toAbsolutePath().toString();
+        String fileName = FileUtil.makeUnique(folder, BASENAME).toAbsolutePath().toString();
         assertThat(fileName).contains(BASENAME);
         assertThat(fileName).endsWith("_0");
     }
 
     @Test
     public void ensureUniquenessForMultipleSuffices() throws IOException {
-        File f = folder.newFile(BASENAME);
-        assertThat(f).exists();
+        assertThat(folder.resolve(BASENAME).toFile().createNewFile()).isTrue();
 
         for (int no = 0; no < 4; no++) {
-            assertThat(folder.newFile(BASENAME + "_" + no)).exists();
+            assertThat(folder.resolve(BASENAME + "_" + no).toFile().createNewFile()).isTrue();
         }
 
-        String fileName = FileUtil.makeUnique(folder.getRoot().toPath(), BASENAME).toAbsolutePath().toString();
+        String fileName = FileUtil.makeUnique(folder, BASENAME).toAbsolutePath().toString();
         assertThat(fileName).contains(BASENAME);
         assertThat(fileName).endsWith("_4");
     }

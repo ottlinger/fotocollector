@@ -3,9 +3,8 @@ package de.aikiit.fotocollector.main;
 import de.aikiit.fotocollector.OutputResult;
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,13 +12,11 @@ import java.nio.file.Path;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
 
 /**
  * @author hirsch
  * @version 2016-02-22, 20:06
  */
-@RunWith(MockitoJUnitRunner.class)
 public class JsonOutputWriterTest {
 
     private final JsonOutputWriter writer = new JsonOutputWriter();

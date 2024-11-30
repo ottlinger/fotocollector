@@ -24,7 +24,7 @@ ext {
 apply plugin: 'application'
 apply plugin: 'java'
 
-
+// set in gradle.properties
 tasks.withType(JavaCompile) {
     sourceCompatibility = rootProject.sourceCompatibility
     targetCompatibility = rootProject.targetCompatibility
@@ -65,8 +65,12 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.18.2'
     implementation 'org.projectlombok:lombok:1.18.36'
     annotationProcessor 'org.projectlombok:lombok:1.18.36'
-    testImplementation group: 'junit', name: 'junit', version: '4.+'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.11.3'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.3'
     testImplementation 'org.mockito:mockito-core:5.14.2'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.14.2'
     testImplementation 'org.assertj:assertj-core:3.26.3'
 }
 
@@ -90,3 +94,7 @@ jar {
 }
 
 check.dependsOn jacocoTestReport
+
+test {
+    useJUnitPlatform()
+}
