@@ -34,7 +34,7 @@ public final class FileUtil {
     }
 
     /**
-     * Calculates the SHA-1 hash of the given path'S contents.
+     * Calculates the SHA-1 hash of the given path's contents.
      *
      * @param path file to calculate hash over.
      * @return SHA-1 or {@code 'none'} in case of errors.
