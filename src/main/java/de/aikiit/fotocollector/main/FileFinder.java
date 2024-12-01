@@ -2,6 +2,7 @@ package de.aikiit.fotocollector.main;
 
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
+import lombok.extern.java.Log;
 
 import java.io.IOException;
 import java.net.URI;
@@ -16,6 +17,7 @@ import static java.nio.file.Files.walk;
  * @author hirsch
  * @version 2016-05-20, 22:38
  */
+@Log
 public class FileFinder {
 
     public static void main(String... args) throws IOException {
@@ -33,12 +35,11 @@ public class FileFinder {
 
     public static void scan(ScanResult result) throws IOException {
         if (result == null || result.isEmpty()) {
-            System.out.println("Nothing to do");
+            log.info("Nothing to do");
         } else {
             for (ScanEntry entry : result.getEntries()) {
                 main(entry.getFileName());
             }
         }
-
     }
 }

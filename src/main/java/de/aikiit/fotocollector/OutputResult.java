@@ -3,6 +3,7 @@ package de.aikiit.fotocollector;
 import com.google.common.base.Strings;
 import de.aikiit.fotocollector.util.FileUtil;
 import lombok.Data;
+import lombok.extern.java.Log;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -17,6 +18,7 @@ import java.util.Optional;
  * @version 2016-02-20, 14:08
  */
 @Data
+@Log
 public class OutputResult {
 
     private final String result;
@@ -37,7 +39,7 @@ public class OutputResult {
             Files.write(targetPath, result.getBytes(StandardCharsets.UTF_8));
             return Optional.of(targetPath);
         } else {
-            System.out.println("Empty result is not written into " + name);
+            log.info("Empty result is not written into " + name);
         }
         return Optional.empty();
     }

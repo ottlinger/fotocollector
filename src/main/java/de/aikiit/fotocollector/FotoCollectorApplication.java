@@ -4,6 +4,9 @@ import de.aikiit.fotocollector.main.HtmlOutputWriter;
 import de.aikiit.fotocollector.main.JsonOutputWriter;
 import de.aikiit.fotocollector.main.PictureScanner;
 import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +20,7 @@ import java.nio.file.Paths;
  * @author hirsch
  * @version 2016-02-19, 22:03
  */
-@Log
+@Slf4j
 public class FotoCollectorApplication {
 
     public static void main(final String[] args) throws IOException {
