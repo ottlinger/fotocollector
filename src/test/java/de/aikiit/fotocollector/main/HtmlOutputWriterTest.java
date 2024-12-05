@@ -34,7 +34,7 @@ public class HtmlOutputWriterTest {
         image.setSize(-1L);
         input.addEntry(image);
         final OutputResult write = new HtmlOutputWriter().write(input);
-        final String writeResult = write.getResult();
+        final String writeResult = write.result();
         assertThat(writeResult).isNotEmpty();
 
         for (String token : Lists.newArrayList("T", "-1", fileName, "<tr><td>#1</td>", "<tr><th>Number</th><th>Filename</th><th>Size/Bytes</th><th>Hash (SHA-1)</th></tr>")) {

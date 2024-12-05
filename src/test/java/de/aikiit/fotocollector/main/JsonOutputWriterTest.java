@@ -42,7 +42,7 @@ public class JsonOutputWriterTest {
         final OutputResult outputResult = writer.write(result);
         assertThat(outputResult.isEmpty()).isFalse();
 
-        final String json = outputResult.getResult();
+        final String json = outputResult.result();
         assertThat(json).isEqualTo("[{\"fileName\":\"atestFileName.txt\",\"hashOverContent\":null,\"creationDate\":\"1970-01-01 00:00:00\",\"size\":0},{\"fileName\":\"testFileName.txt\",\"hashOverContent\":null,\"creationDate\":\"1970-01-01 00:00:00\",\"size\":" + size + "}]", json);
 
         assertThat(outputResult.flush(cwd)).isPresent();
