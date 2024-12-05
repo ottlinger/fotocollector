@@ -52,15 +52,6 @@ public class FileUtilTest {
         assertThat(FileUtil.getHash(new File("DoesNotExistDoesIt").toPath())).isEqualTo(FileUtil.NONE);
     }
 
-    @Test
-    @EnabledOnOs({OS.MAC, OS.LINUX})
-    public void compareHashAfterCalculationFromExternalFile() throws URISyntaxException {
-        // hash differs on Windows!
-        String hash = FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()));
-
-        assertThat(hash).isEqualTo("888dd99d3343db79290c8db3ab0df39242c9fcbf0ccbf6e5bb1560837b4e32cd");
-    }
-
     /**
      * As hash differs under windows, we need a different expectation here.
      * @throws URISyntaxException
@@ -69,7 +60,15 @@ public class FileUtilTest {
     @EnabledOnOs({OS.WINDOWS})
     public void compareHashAfterCalculationFromExternalFile_WindowsOnly() throws URISyntaxException {
         String hash = FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()));
-        System.out.println("WINDOWS-hash = " + hash);
+        System.err.println("WINDOWS-hash = " + hash);
         assertThat(hash).isEqualTo("888dd99d3343db79290c8db3ab0df39242c9fcbf0ccbf6e5bb1560837b4e32cd");
     }
+
+    @Test
+    @EnabledOnOs({OS.MAC, OS.LINUX})
+    public void compareHashAfterCalculationFromExternalFile() throws URISyntaxException {
+        String hash = FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()));
+        assertThat(hash).isEqualTo("888dd99d3343db79290c8db3ab0df39242c9fcbf0ccbf6e5bb1560837b4e32cd");
+    }
+
 }
