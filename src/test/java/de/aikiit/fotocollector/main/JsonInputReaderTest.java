@@ -19,7 +19,7 @@ public class JsonInputReaderTest {
 
     @Test
     public void illegalPathYieldsEmptyResultAndNoException() {
-        assertThat(new JsonInputReader().read(new File("D:\notExistingRight" + System.currentTimeMillis()).toPath()).isEmpty()).isTrue();
+        assertThat(new JsonInputReader().read(new File("FILEDOESnotExRight" + System.currentTimeMillis()).toPath()).isEmpty()).isTrue();
     }
 
 }
