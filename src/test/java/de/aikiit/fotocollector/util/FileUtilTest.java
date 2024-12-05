@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -51,8 +53,23 @@ public class FileUtilTest {
     }
 
     @Test
+    @EnabledOnOs({OS.MAC, OS.LINUX})
     public void compareHashAfterCalculationFromExternalFile() throws URISyntaxException {
         // hash differs on Windows!
-        assertThat(FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()))).isEqualTo("888dd99d3343db79290c8db3ab0df39242c9fcbf0ccbf6e5bb1560837b4e32cd");
+        String hash = FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()));
+
+        assertThat(hash).isEqualTo("888dd99d3343db79290c8db3ab0df39242c9fcbf0ccbf6e5bb1560837b4e32cd");
+    }
+
+    /**
+     * As hash differs under windows, we need a different expectation here.
+     * @throws URISyntaxException
+     */
+    @Test
+    @EnabledOnOs({OS.WINDOWS})
+    public void compareHashAfterCalculationFromExternalFile_WindowsOnly() throws URISyntaxException {
+        String hash = FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()));
+        System.out.println("WINDOWS-hash = " + hash);
+        assertThat(hash).isEqualTo("888dd99d3343db79290c8db3ab0df39242c9fcbf0ccbf6e5bb1560837b4e32cd");
     }
 }
