@@ -4,6 +4,7 @@ import de.aikiit.fotocollector.OutputResult;
 import de.aikiit.fotocollector.OutputWriter;
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
+import de.aikiit.fotocollector.util.FileUtil;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +23,7 @@ public class HtmlOutputWriter implements OutputWriter {
             <?xml version="1.0">
             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
             <html xmlns="https://www.w3.org/1999/xhtml"><head><title>FotoCollector - %s</title> <meta http-equiv="content-type" content="text/html; charset=utf-8" /></head><body>""";
-    private static final String TABLE_HEADER = "<table><tr><th>Number</th><th>Filename</th><th>Size/Bytes</th><th>Hash (SHA-1)</th></tr>";
+    private static final String TABLE_HEADER = "<table><tr><th>Number</th><th>Filename</th><th>Size/Bytes</th><th>Hash (" + FileUtil.HASH_ALGORITHM + ")</th></tr>";
     private static final String FOOTER = "</table><hr><p>Created at: %s with %s images</p></body></html>";
 
     @Override

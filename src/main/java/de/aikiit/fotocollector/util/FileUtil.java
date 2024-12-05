@@ -19,6 +19,11 @@ public final class FileUtil {
     static final String NONE = "none";
 
     /**
+     * The currently used hashing algorithm.
+     */
+    public static final String HASH_ALGORITHM = "SHA3-256";
+
+    /**
      * If the given path contains a file baseName a number is added as a suffix.
      */
     public static Path makeUnique(Path basePath, String baseName) {
@@ -34,15 +39,15 @@ public final class FileUtil {
     }
 
     /**
-     * Calculates the SHA3-256 hash of the given path's contents.
+     * Calculates the {@value #HASH_ALGORITHM} hash of the given path's contents.
      * Unfortunately the current implementation is OS-specific.
      *
      * @param path file to calculate hash over.
-     * @return SHA3-256 or {@code 'none'} in case of errors.
+     * @return {@value #HASH_ALGORITHM} or {@code 'none'} in case of errors.
      */
     public static String getHash(Path path) {
         try {
-            return new DigestUtils("SHA3-256").digestAsHex((Files.newInputStream(path, StandardOpenOption.READ)));
+            return new DigestUtils(HASH_ALGORITHM).digestAsHex((Files.newInputStream(path, StandardOpenOption.READ)));
         } catch (NullPointerException | IOException e) {
             return NONE;
         }

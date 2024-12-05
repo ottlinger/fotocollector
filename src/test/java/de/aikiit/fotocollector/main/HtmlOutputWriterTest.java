@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import de.aikiit.fotocollector.OutputResult;
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
+import de.aikiit.fotocollector.util.FileUtil;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -36,7 +37,8 @@ public class HtmlOutputWriterTest {
         final String writeResult = write.result();
         assertThat(writeResult).isNotEmpty();
 
-        for (String token : Lists.newArrayList("T", "-1", fileName, "<tr><td>#1</td>", "<tr><th>Number</th><th>Filename</th><th>Size/Bytes</th><th>Hash (SHA-1)</th></tr>")) {
+        for (String token : Lists.newArrayList("T", "-1", fileName, "<tr><td>#1</td>", "<tr><th>Number</th><th>Filename</th><th>Size/Bytes</th><th>Hash (" +
+                FileUtil.HASH_ALGORITHM + ")</th></tr>")) {
             assertThat(writeResult).contains(token);
         }
     }
