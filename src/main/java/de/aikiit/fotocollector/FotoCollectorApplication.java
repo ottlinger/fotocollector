@@ -41,7 +41,7 @@ public class FotoCollectorApplication {
 
             html.flush(files);
             json.flush(files);
-            log.info("Output was written to HTML and JSON output in {}", files.toRealPath(LinkOption.NOFOLLOW_LINKS));
+            log.info("Finished writing all results in {}", files.toRealPath(LinkOption.NOFOLLOW_LINKS));
         }
     }
 }

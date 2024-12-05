@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.Optional;
 
@@ -27,6 +28,8 @@ public record OutputResult(String result, String name) {
         if (!isEmpty()) {
             final Path targetPath = FileUtil.makeUnique(basePath, name);
             Files.write(targetPath, result.getBytes(StandardCharsets.UTF_8));
+            log.info("Result was written in {}", targetPath.toRealPath(LinkOption.NOFOLLOW_LINKS));
+
             return Optional.of(targetPath);
         } else {
             log.info("Empty result is not written into {}", name);
