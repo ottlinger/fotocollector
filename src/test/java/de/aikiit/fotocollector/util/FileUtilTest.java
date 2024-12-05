@@ -60,7 +60,7 @@ public class FileUtilTest {
     @Test
     @EnabledOnOs({OS.WINDOWS})
     public void windowsOnlyCompareHashAfterCalculationFromExternalFile() throws URISyntaxException {
-        assertThat(FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()))).isEqualTo("79830e4c358f80d3016d4365ed0ac801eaf4bdd65212d76b4c218e05321b0ad1");
+        assertThat(FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()))).isEqualTo("4416ceab285035770b55ab758f2429da68f8a5c72ff465c6216b819b389a51dd");
     }
 
     @Test
