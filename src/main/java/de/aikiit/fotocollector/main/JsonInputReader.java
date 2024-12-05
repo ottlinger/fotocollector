@@ -5,6 +5,7 @@ import de.aikiit.fotocollector.InputReader;
 import de.aikiit.fotocollector.ScanResult;
 
 import java.io.IOException;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 
 /**
@@ -19,7 +20,7 @@ public class JsonInputReader implements InputReader {
     public ScanResult read(Path input) {
         try {
             return MAPPER.readValue(input.toFile(), ScanResult.class);
-        } catch (NullPointerException | IOException e) {
+        } catch (NullPointerException | IOException | InvalidPathException e) {
             return new ScanResult();
         }
     }
