@@ -24,7 +24,10 @@ public class HtmlOutputWriter implements OutputWriter {
             <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
             <html xmlns="https://www.w3.org/1999/xhtml"><head><title>FotoCollector - %s</title> <meta http-equiv="content-type" content="text/html; charset=utf-8" /></head><body>""";
     private static final String TABLE_HEADER = "<table><tr><th>Number</th><th>Filename</th><th>Size/Bytes</th><th>Hash (" + FileUtil.HASH_ALGORITHM + ")</th></tr>";
-    private static final String FOOTER = "</table><hr/><p>Created at: %s with %s images</p></body></html>";
+    private static final String FOOTER = """
+            </table><hr/>
+            <p>Created by <a href="https://github.com/ottlinger/fotocollector" target="_blank">FotoCollector</a> at: %s with %s images</p>
+            </body></html>""";
 
     @Override
     public OutputResult write(final ScanResult result) {
