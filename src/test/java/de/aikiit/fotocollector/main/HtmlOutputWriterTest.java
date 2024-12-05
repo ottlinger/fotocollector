@@ -39,6 +39,5 @@ public class HtmlOutputWriterTest {
         for (String token : Lists.newArrayList("T", "-1", fileName, "<tr><td>#1</td>", "<tr><th>Number</th><th>Filename</th><th>Size/Bytes</th><th>Hash (SHA-1)</th></tr>")) {
             assertThat(writeResult).contains(token);
         }
-        System.out.println(writeResult);
     }
 }
