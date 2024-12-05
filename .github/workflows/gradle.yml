@@ -34,7 +34,7 @@ jobs:
     - name: Show test Summary
       uses: test-summary/action@v2
       with:
-        paths: "/build/test-results/test/**/TEST-*.xml"
+        paths: "./build/test-results/test/TEST-*.xml"
       if: always()
 
     - name: Code coverage with codecov
