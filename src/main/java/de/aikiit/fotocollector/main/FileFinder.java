@@ -2,7 +2,7 @@ package de.aikiit.fotocollector.main;
 
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.URI;
@@ -17,7 +17,7 @@ import static java.nio.file.Files.walk;
  * @author hirsch
  * @version 2016-05-20, 22:38
  */
-@Log
+@Slf4j
 public class FileFinder {
 
     public static void main(String... args) throws IOException {
@@ -27,7 +27,7 @@ public class FileFinder {
         try {
             walk(Paths.get(path))
                     .filter(Files::isRegularFile)
-                    .forEach(System.out::println);
+                    .forEach(e -> log.info(e.toString()));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -35,7 +35,7 @@ public class FileFinder {
 
     public static void scan(ScanResult result) throws IOException {
         if (result == null || result.isEmpty()) {
-            log.info("Nothing to do");
+            log.info("Nothing to be done here.");
         } else {
             for (ScanEntry entry : result.getEntries()) {
                 main(entry.getFileName());
