@@ -55,10 +55,11 @@ public class FileUtilTest {
     /**
      * As hash differs under windows, we need a different expectation here.
      * @throws URISyntaxException
+     * @see #compareHashAfterCalculationFromExternalFile()
      */
     @Test
     @EnabledOnOs({OS.WINDOWS})
-    public void compareHashAfterCalculationFromExternalFile_WindowsOnly() throws URISyntaxException {
+    public void windowsOnlyCompareHashAfterCalculationFromExternalFile() throws URISyntaxException {
         assertThat(FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()))).isEqualTo("0accace9681cd8bc94d150e2d4acd7ce538dea6e49cf99ccd4d4b0799ed84f04");
     }
 
