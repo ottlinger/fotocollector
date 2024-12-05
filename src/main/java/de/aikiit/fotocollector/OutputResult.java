@@ -27,7 +27,7 @@ public record OutputResult(String result, String name) {
     public Optional<Path> flush(Path basePath) throws IOException {
         if (!isEmpty()) {
             final Path targetPath = FileUtil.makeUnique(basePath, name);
-            Files.write(targetPath, result.getBytes(StandardCharsets.UTF_8));
+            Files.writeString(targetPath, result);
             log.info("Result was written in {}", targetPath.toRealPath(LinkOption.NOFOLLOW_LINKS));
 
             return Optional.of(targetPath);

@@ -20,7 +20,7 @@ import static java.nio.file.Files.walk;
 @Slf4j
 public class FileFinder {
 
-    public static void main(String... args) throws IOException {
+    public static void main(String... args) {
 
         // https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#find-java.nio.file.Path-int-java.util.function.BiPredicate-java.nio.file.FileVisitOption...-
         final URI path = args == null || args.length < 1 ? Paths.get("/tmp/").toUri() : Paths.get(args[0]).toUri();

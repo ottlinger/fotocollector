@@ -1,7 +1,6 @@
 package de.aikiit.fotocollector.main;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.util.Arrays;

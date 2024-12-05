@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * @author hirsch
@@ -22,11 +23,7 @@ public final class PictureScanner {
     private final Path basePath;
 
     public PictureScanner(Path baseDir) {
-        if (baseDir == null) {
-            this.basePath = Paths.get(System.getProperty("user.home")).resolve("Documents/Pictures");
-        } else {
-            this.basePath = baseDir;
-        }
+        this.basePath = Objects.requireNonNullElseGet(baseDir, () -> Paths.get(System.getProperty("user.home")).resolve("Documents/Pictures"));
     }
 
     // TODO add recursive file scanning as an option
@@ -35,7 +32,7 @@ public final class PictureScanner {
 
         final ScanResult scanResult = new ScanResult();
         try {
-            Files.walkFileTree(this.basePath, new SimpleFileVisitor<Path>() {
+            Files.walkFileTree(this.basePath, new SimpleFileVisitor<>() {
                 @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                     if (!attrs.isDirectory() && PICTURE_MATCHER.accept(file.toFile())) {

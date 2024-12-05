@@ -4,7 +4,6 @@ import de.aikiit.fotocollector.OutputResult;
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
