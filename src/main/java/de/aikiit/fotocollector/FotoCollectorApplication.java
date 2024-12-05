@@ -33,16 +33,15 @@ public class FotoCollectorApplication {
         log.info("Starting collection on directory: {}", files.toRealPath(LinkOption.NOFOLLOW_LINKS));
 
         final ScanResult scanResult = new PictureScanner(files).getFiles();
-
         if (scanResult.isEmpty()) {
             log.info("No results found. Nothing to be done and no output was written :-)");
         } else {
-            log.info("Output was written to HTML and JSON output in {}", files.toRealPath(LinkOption.NOFOLLOW_LINKS));
             final OutputResult html = new HtmlOutputWriter().write(scanResult);
             final OutputResult json = new JsonOutputWriter().write(scanResult);
 
             html.flush(files);
             json.flush(files);
+            log.info("Output was written to HTML and JSON output in {}", files.toRealPath(LinkOption.NOFOLLOW_LINKS));
         }
     }
 }

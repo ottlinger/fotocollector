@@ -47,7 +47,7 @@ $ java -jar build/libs/fotocollector-0.0.2-SNAPSHOT-all.jar .
 
 to run in the current directory and generate the following output formats:
 
-* fotocollector.html - HTMl report
+* fotocollector.html - HTML report
 * fotocollector.json - JSON report
 
 ## Releases
