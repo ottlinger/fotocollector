@@ -13,7 +13,7 @@ import java.util.List;
  */
 class PictureFileFilter implements FileFilter {
 
-    private static final List<String> PICTURE_ENDINGS = Arrays.asList("jpg", "gif", "jpeg", "png");
+    static final List<String> PICTURE_ENDINGS = Arrays.asList("jpg", "gif", "jpeg", "png");
 
     @Override
     public boolean accept(final File pathname) {

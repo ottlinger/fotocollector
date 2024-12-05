@@ -65,8 +65,7 @@ public final class PictureScanner {
 
         final ScanResult scanResult = new ScanResult();
         try {
-            // TODO keep in sync with PictureFileFilter
-            try (DirectoryStream<Path> files = Files.newDirectoryStream(this.basePath, "*.{gif,jpg,png,jpeg}")) {
+            try (DirectoryStream<Path> files = Files.newDirectoryStream(this.basePath, convertEndingsToGlobPattern())) {
                 for (Path path : files) {
                     scanResult.addEntry(convert(path));
                 }
@@ -75,6 +74,16 @@ public final class PictureScanner {
             // intentional fallthrough
         }
         return scanResult;
+    }
+
+    private static String convertEndingsToGlobPattern() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("*.{");
+        for(String ending : PictureFileFilter.PICTURE_ENDINGS) {
+            sb.append(ending).append(",");
+        }
+        sb.append("}");
+        return sb.toString();
     }
 
 }
