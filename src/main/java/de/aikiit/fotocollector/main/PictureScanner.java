@@ -3,6 +3,7 @@ package de.aikiit.fotocollector.main;
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
 import de.aikiit.fotocollector.util.FileUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.nio.file.*;
@@ -13,7 +14,7 @@ import java.util.Date;
  * @author hirsch
  * @version 2016-03-03, 00:11
  */
-
+@Slf4j
 public final class PictureScanner {
 
     private static final PictureFileFilter PICTURE_MATCHER = new PictureFileFilter();
@@ -39,7 +40,7 @@ public final class PictureScanner {
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                     if (!attrs.isDirectory() && PICTURE_MATCHER.accept(file.toFile())) {
                         scanResult.addEntry(convert(file));
-                        System.out.println(file.toFile());
+                        log.info("{} created at {}", file.toFile().getName(), attrs.creationTime());
                     }
                     return FileVisitResult.CONTINUE;
                 }
@@ -54,7 +55,6 @@ public final class PictureScanner {
     private ScanEntry convert(Path path) throws IOException {
         final Path fileName = path.getFileName();
         BasicFileAttributes attr = Files.readAttributes(path, BasicFileAttributes.class);
-        System.out.println(fileName + " created at " + attr.creationTime());
         ScanEntry entry = new ScanEntry(fileName.toString(), new Date(attr.creationTime().toMillis()));
         entry.setSize(Files.size(path));
         entry.setHashOverContent(FileUtil.getHash(path));
@@ -64,8 +64,8 @@ public final class PictureScanner {
     public ScanResult getFiles() {
 
         final ScanResult scanResult = new ScanResult();
-        // TODO keep in sync with PictureFileFilter
         try {
+            // TODO keep in sync with PictureFileFilter
             try (DirectoryStream<Path> files = Files.newDirectoryStream(this.basePath, "*.{gif,jpg,png,jpeg}")) {
                 for (Path path : files) {
                     scanResult.addEntry(convert(path));
@@ -76,6 +76,5 @@ public final class PictureScanner {
         }
         return scanResult;
     }
-
 
 }
