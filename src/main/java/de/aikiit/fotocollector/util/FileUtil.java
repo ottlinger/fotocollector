@@ -34,15 +34,15 @@ public final class FileUtil {
     }
 
     /**
-     * Calculates the SHA-1 hash of the given path's contents.
+     * Calculates the SHA3-256 hash of the given path's contents.
      * Unfortunately the current implementation is OS-specific.
      *
      * @param path file to calculate hash over.
-     * @return SHA-256 or {@code 'none'} in case of errors.
+     * @return SHA3-256 or {@code 'none'} in case of errors.
      */
     public static String getHash(Path path) {
         try {
-            return DigestUtils.sha256Hex(Files.newInputStream(path, StandardOpenOption.READ));
+            return new DigestUtils("SHA3-256").digestAsHex((Files.newInputStream(path, StandardOpenOption.READ)));
         } catch (NullPointerException | IOException e) {
             return NONE;
         }

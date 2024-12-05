@@ -60,13 +60,13 @@ public class FileUtilTest {
     @Test
     @EnabledOnOs({OS.WINDOWS})
     public void windowsOnlyCompareHashAfterCalculationFromExternalFile() throws URISyntaxException {
-        assertThat(FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()))).isEqualTo("0accace9681cd8bc94d150e2d4acd7ce538dea6e49cf99ccd4d4b0799ed84f04");
+        assertThat(FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()))).isEqualTo("79830e4c358f80d3016d4365ed0ac801eaf4bdd65212d76b4c218e05321b0ad1");
     }
 
     @Test
     @EnabledOnOs({OS.MAC, OS.LINUX})
     public void compareHashAfterCalculationFromExternalFile() throws URISyntaxException {
-        assertThat(FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()))).isEqualTo("888dd99d3343db79290c8db3ab0df39242c9fcbf0ccbf6e5bb1560837b4e32cd");
+        assertThat(FileUtil.getHash(Paths.get(ClassLoader.getSystemResource("hashme.txt").toURI()))).isEqualTo("79830e4c358f80d3016d4365ed0ac801eaf4bdd65212d76b4c218e05321b0ad1");
     }
 
 }
