@@ -62,6 +62,10 @@ to run in the current directory and generate the following output formats:
 * fotocollector.html - HTML report
 * fotocollector.json - JSON report
 
+## License
+
+This tool is licensed under [Apache License v2.0](https://www.apache.org/licenses/).
+
 ## Release history
 
 ### 0.0.2-SNAPSHOT
@@ -77,7 +81,7 @@ Furthermore I experienced the ease of releasing with gradle, it nails down to a
 gradle release
 ```
 
-## History
+## Project history
 
 ### 2015-11
 
@@ -91,7 +95,3 @@ These names can later be used to scan a certain directory and copy the image to 
 ### 2016-03
 
 The output should be available as JSON and HTML.
-
-## License
-
-This tool is licensed under [Apache License v2.0](https://www.apache.org/licenses/).
