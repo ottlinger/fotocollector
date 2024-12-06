@@ -62,13 +62,13 @@ to run in the current directory and generate the following output formats:
 * fotocollector.html - HTML report
 * fotocollector.json - JSON report
 
-## Releases
+## Release history
 
 ### 0.0.2-SNAPSHOT
 
-Currently: work in progress :-D
+Currently: work in progress :-D copying of files needs to be implemented.
 
-### 0.0.1 - 20160329
+### 0.0.1 - 2016-03-29
 
 This [first release](https://github.com/ottlinger/fotocollector/tree/0.0.1) contains some Tika experiments and a basic skeleton for JSON and HTML generation.
 Furthermore I experienced the ease of releasing with gradle, it nails down to a
