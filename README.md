@@ -4,6 +4,18 @@
 Helper to generate metadata about photo collections to not copy image files again and again :-)
 This metadata is supposed to be used to recreate collections of files.
 
+## Abstract
+
+Usually you do have a lot of photos you want to keep. Sometimes you copy subsets of these in order to print them or to send them somewhere.
+FotoCollector helps you with that:
+
+   * Just copy all of your desired pictures into one folder.
+   * Let FotoCollector run over that folder in order to create a JSON (machine-readable) and HTML (human-readable) report.
+   * Afterwards you shall be able to recreate these files by letting FotoCollector scan your image base directory and copy the desired files from the JSON report into a separate output folder.
+   * Thus you can recreate collections of photographs based on metadata.
+
+fyi: The last two steps are not yet implemented!
+
 ## Status
 
 [![Github Action master branch status](https://github.com/ottlinger/fotocollector/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/ottlinger/fotocollector/actions)
