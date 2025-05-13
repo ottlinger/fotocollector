@@ -32,6 +32,7 @@ tasks.withType(JavaCompile) {
 }
 
 test {
+    useJUnitPlatform()
     finalizedBy jacocoTestReport // report is always generated after tests run
 }
 jacocoTestReport {
@@ -66,10 +67,9 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.18.2'
     implementation 'org.projectlombok:lombok:1.18.36'
     annotationProcessor 'org.projectlombok:lombok:1.18.36'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.3'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.11.3'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.11.3'
+    testImplementation(platform('org.junit:junit-bom:5.12.2'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher')
     testImplementation 'org.mockito:mockito-core:5.14.2'
     testImplementation 'org.mockito:mockito-junit-jupiter:5.14.2'
     testImplementation 'org.assertj:assertj-core:3.26.3'
@@ -97,7 +97,3 @@ jar {
 }
 
 check.dependsOn jacocoTestReport
-
-test {
-    useJUnitPlatform()
-}
