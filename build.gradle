@@ -59,7 +59,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'commons-codec:commons-codec:1.17.1'
+    implementation 'commons-codec:commons-codec:1.18.0'
     implementation 'com.google.guava:guava:33.4.0-jre'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.18.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
