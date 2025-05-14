@@ -1,7 +1,7 @@
 import java.text.SimpleDateFormat
 
 plugins {
-    id 'net.researchgate.release' version '3.0.2'
+    id 'net.researchgate.release' version '3.1.0'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
     id 'java'
     id 'jacoco'
