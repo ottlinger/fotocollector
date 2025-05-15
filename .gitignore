@@ -35,3 +35,6 @@ target
 # example output
 *.json*
 *.html*
+
+# Ignore Gradle build output directory
+build
