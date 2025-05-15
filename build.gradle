@@ -12,6 +12,7 @@ plugins {
 }
 
 base {
+    defaultTasks 'clean', 'build'
     gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
 }
 
@@ -49,9 +50,6 @@ jacoco {
     // reportsDirectory = layout.buildDirectory.dir('reports/jacoco/test/html/')
 }
 
-base {
-    defaultTasks 'clean', 'build'
-}
 
 application {
     mainClass = 'de.aikiit.fotocollector.FotoCollectorApplication'
