@@ -25,8 +25,7 @@ ext {
 apply plugin: 'application'
 apply plugin: 'java'
 
-// set in gradle.properties
-tasks.withType(JavaCompile) {
+java {
     sourceCompatibility = rootProject.sourceCompatibility
     targetCompatibility = rootProject.targetCompatibility
 }
@@ -51,7 +50,9 @@ jacoco {
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 
-defaultTasks 'clean', 'build'
+base {
+    defaultTasks 'clean', 'build'
+}
 
 application {
     mainClass = 'de.aikiit.fotocollector.FotoCollectorApplication'
