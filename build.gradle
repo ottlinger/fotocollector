@@ -6,9 +6,12 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'project-report'
+    id 'application'
 }
 
-gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
+base {
+    gradle.startParameter.showStacktrace = ShowStacktrace.ALWAYS
+}
 
 Date buildTimeAndDate = new Date()
 ext {
@@ -21,9 +24,6 @@ ext {
     buildDate = new SimpleDateFormat('yyyy-MM-dd').format(buildTimeAndDate)
     buildTime = new SimpleDateFormat('HH:mm:ss.SSSZ').format(buildTimeAndDate)
 }
-
-apply plugin: 'application'
-apply plugin: 'java'
 
 java {
     sourceCompatibility = rootProject.sourceCompatibility
