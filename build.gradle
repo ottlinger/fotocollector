@@ -7,6 +7,8 @@ plugins {
     id 'jacoco'
     id 'project-report'
     id 'application'
+    id 'idea'
+    id 'eclipse'
 }
 
 base {
@@ -46,9 +48,6 @@ jacoco {
     toolVersion = "0.8.12"
     // reportsDirectory = layout.buildDirectory.dir('reports/jacoco/test/html/')
 }
-
-apply plugin: 'eclipse'
-apply plugin: 'idea'
 
 base {
     defaultTasks 'clean', 'build'
