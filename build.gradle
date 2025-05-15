@@ -53,7 +53,12 @@ apply plugin: 'idea'
 
 defaultTasks 'clean', 'build'
 
-mainClassName = 'de.aikiit.fotocollector.FotoCollectorApplication'
+application {
+    mainClass = 'de.aikiit.fotocollector.FotoCollectorApplication'
+}
+shadow {
+    mainClassName = application.mainClass.get()
+}
 
 repositories {
     mavenCentral()
