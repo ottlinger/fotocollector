@@ -38,7 +38,7 @@ jobs:
       if: always()
 
     - name: Code coverage with codecov
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v5
       if: matrix.os == 'ubuntu-latest'
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
