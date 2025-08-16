@@ -9,7 +9,7 @@ jobs:
     - name: Checkout project
       uses: actions/checkout@v4
     - name: Lint Markdown
-      uses: DavidAnson/markdownlint-cli2-action@v18
+      uses: DavidAnson/markdownlint-cli2-action@v20
       with:
         globs: |
           *.md
