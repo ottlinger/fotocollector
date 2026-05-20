@@ -74,8 +74,8 @@ dependencies {
     testImplementation 'org.mockito:mockito-core'
     testImplementation 'org.mockito:mockito-junit-jupiter'
     testImplementation 'org.assertj:assertj-core:3.27.7'
-    implementation 'org.slf4j:slf4j-api:2.0.17'
-    implementation 'org.slf4j:slf4j-log4j12:2.0.17'
+    implementation 'org.slf4j:slf4j-api:2.0.18'
+    implementation 'org.slf4j:slf4j-log4j12:2.0.18'
 }
 
 jar {
