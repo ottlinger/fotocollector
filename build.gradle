@@ -62,9 +62,9 @@ repositories {
 dependencies {
     implementation 'commons-codec:commons-codec:1.22.0'
     implementation 'com.google.guava:guava:33.6.0-jre'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.22.4'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.22.4'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.22'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.21.4'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.21.4'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.21'
     implementation 'org.projectlombok:lombok:1.18.46'
     annotationProcessor 'org.projectlombok:lombok:1.18.46'
     testImplementation platform('org.junit:junit-bom:6.1.0')
