@@ -28,7 +28,12 @@ gradle-app.setting
 .classpath
 .project
 target
-.idea
+# Share only IntelliJ project code style; keep all other IDE files local.
+.idea/*
+!.idea/codeStyles/
+.idea/codeStyles/*
+!.idea/codeStyles/Project.xml
+!.idea/codeStyles/codeStyleConfig.xml
 *.iml
 *.ipr
 
