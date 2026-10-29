@@ -37,8 +37,12 @@ jobs:
         paths: "./build/test-results/test/TEST-*.xml"
       if: always()
 
-    - name: Code coverage with codecov
+    - name: Upload JaCoCo coverage to Codecov
       uses: codecov/codecov-action@v7
       if: matrix.os == 'ubuntu-latest'
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./build/reports/jacoco/test/jacocoTestReport.xml
+        disable_search: true
+        fail_ci_if_error: true
+        verbose: true
