@@ -68,9 +68,9 @@ This tool is licensed under [Apache License v2.0](https://www.apache.org/license
 
 ## Release history
 
-### 0.0.2-SNAPSHOT
+### 0.0.2 - 2026-10-29
 
-Currently: work in progress :-D copying of files needs to be implemented.
+[Mainly](https://github.com/ottlinger/fotocollector/tree/v0.0.2) dependency updates and some refactoring. The HTML report is now generated with [Thymeleaf](https://www.thymeleaf.org/).
 
 ### 0.0.1 - 2016-03-29
 
@@ -81,7 +81,7 @@ Furthermore I experienced the ease of releasing with gradle, it nails down to a
 gradle release
 ```
 
-## Project history
+## Project idea
 
 ### 2015-11
 
