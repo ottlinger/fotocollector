@@ -31,8 +31,10 @@ public final class PictureScanner {
         this.basePath = Objects.requireNonNullElseGet(baseDir, () -> Paths.get(System.getProperty("user.home")).resolve("Documents/Pictures"));
     }
 
-    // TODO add recursive file scanning as an option
-    // http://www.ntu.edu.sg/home/ehchua/programming/java/J5b_IO.html
+    /**
+     * Recursively finds images by content, without restricting filename extensions.
+     * Directory symbolic links are not followed.
+     */
     public ScanResult getFilesRecursively() {
 
         final ScanResult scanResult = new ScanResult();
@@ -51,7 +53,7 @@ public final class PictureScanner {
             // intentional fallthrough
         }
 
-        return new ScanResult();
+        return scanResult;
     }
 
     private ScanEntry convert(Path path) throws IOException {
@@ -61,29 +63,26 @@ public final class PictureScanner {
                 new Date(attr.creationTime().toMillis()), Files.size(path));
     }
 
+    /**
+     * Finds images directly in the base directory using the same content filter as
+     * the recursive scan. All directory entries must be considered, including files
+     * without extensions; a filename glob would discard valid images before detection.
+     */
     public ScanResult getFiles() {
 
         final ScanResult scanResult = new ScanResult();
         try {
-            try (DirectoryStream<Path> files = Files.newDirectoryStream(this.basePath, convertEndingsToGlobPattern())) {
+            try (DirectoryStream<Path> files = Files.newDirectoryStream(this.basePath)) {
                 for (Path path : files) {
-                    scanResult.addEntry(convert(path));
+                    if (PICTURE_MATCHER.accept(path.toFile())) {
+                        scanResult.addEntry(convert(path));
+                    }
                 }
             }
         } catch (IOException e) {
             // intentional fallthrough
         }
         return scanResult;
-    }
-
-    private static String convertEndingsToGlobPattern() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("*.{");
-        for(String ending : PictureFileFilter.PICTURE_ENDINGS) {
-            sb.append(ending).append(",");
-        }
-        sb.append("}");
-        return sb.toString();
     }
 
 }

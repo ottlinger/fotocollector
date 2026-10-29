@@ -7,6 +7,8 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.UUID;
 
+import de.aikiit.fotocollector.util.TestImages;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -26,21 +28,24 @@ public class FotoCollectorApplicationTest {
 
     @Test
     public void launchWithArgsThenAllOutputFilesAreWritten() throws IOException {
-        // create fake image
-        String name = UUID.randomUUID() + ".png";
-        assertThat(folder.resolve(name).toFile().createNewFile()).isTrue();
+        // Reports must be generated from actual image content, even without an extension.
+        String name = UUID.randomUUID().toString();
+        TestImages.write(folder.resolve(name));
+        Files.writeString(folder.resolve("fake.jpg"), "not an image");
 
         FotoCollectorApplication.main(new String[] {folder.toFile().toString()});
         for(String fileName : Arrays.asList("fotocollector.html", "fotocollector.json")) {
             final File output = folder.resolve(fileName).toFile();
             assertThat(output).exists();
+            assertThat(Files.readString(output.toPath())).contains(name).doesNotContain("fake.jpg");
         }
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"json", "html"})
     void collectFromGeneratedReport(String format) throws IOException {
-        Path original = Files.writeString(folder.resolve("photo.jpg"), "image");
+        Path original = TestImages.write(folder.resolve("photo.jpg"), "jpeg");
+        byte[] imageContent = Files.readAllBytes(original);
         FotoCollectorApplication.main(new String[] {folder.toString()});
         Path archive = Files.createDirectories(folder.resolve("archive/nested"));
         Files.move(original, archive.resolve("renamed.jpg"));
@@ -50,7 +55,7 @@ public class FotoCollectorApplicationTest {
                 folder.resolve("fotocollector." + format).toString(), "--start",
                 folder.resolve("archive").toString(), "--output", output.toString()});
 
-        assertThat(Files.readString(output.resolve("photo.jpg"))).isEqualTo("image");
+        assertThat(Files.readAllBytes(output.resolve("photo.jpg"))).isEqualTo(imageContent);
         assertThat(archive.resolve("renamed.jpg")).exists();
     }
 

@@ -9,7 +9,7 @@ This metadata is supposed to be used to recreate collections of files.
 Usually you do have a lot of photos you want to keep. Sometimes you copy subsets of these in order to print them or to send them somewhere.
 FotoCollector helps you with that:
 
-* Just copy all of your desired pictures into one folder.
+* Just copy all of your desired pictures into one folder. Thanks to [Apache Tika](https://tika.apache.org), FotoCollector will detect all images in that folder, even if they have no or a wrong file extension.
 * Let FotoCollector run over that folder in order to create a JSON (machine-readable) and HTML (human-readable) report.
 * Recreate the collection with the `collect` command: scan your image base directory and copy the desired files from a JSON or HTML report into a separate output folder.
 * Thus you can recreate collections of photographs based on metadata.
@@ -59,6 +59,17 @@ to run in the current directory and generate the following output formats:
 
 * fotocollector.html - HTML report
 * fotocollector.json - JSON report
+
+#### Image detection
+
+Report generation uses [Apache Tika](https://tika.apache.org/) (`tika-core`) to identify images from their **file content**, not their filename extension. All regular files in the selected folder are checked; a file is included when Tika detects an `image/*` MIME type.
+
+* Images with uppercase, missing, or misleading extensions are recognized. Text files renamed to `.jpg` or `.png` and empty files are excluded.
+* There is no extension allowlist: formats such as BMP and TIFF are supported in addition to JPEG, PNG and GIF, provided Tika recognizes their content.
+* Directories and files that cannot be read are skipped. Detection errors are logged at debug level.
+* MIME detection identifies a file format; it does **not** fully decode the image or guarantee that the file is intact.
+
+The folder command generates reports for images **directly in that folder**. The programmatic `PictureScanner.getFilesRecursively()` method uses the same content detection in subfolders, without following directory symbolic links. Checking content requires opening files, so scanning can take longer than filtering by extension alone.
 
 #### Collect files from a report
 
