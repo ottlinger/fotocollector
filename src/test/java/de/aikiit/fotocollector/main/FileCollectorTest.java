@@ -1,6 +1,7 @@
 package de.aikiit.fotocollector.main;
 
 import de.aikiit.fotocollector.OutputResult;
+import de.aikiit.fotocollector.ProgressUpdate;
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
 import de.aikiit.fotocollector.util.FileUtil;
@@ -10,9 +11,15 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import static de.aikiit.fotocollector.ProgressUpdate.Operation.COLLECT;
+import static de.aikiit.fotocollector.ProgressUpdate.State.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIOException;
@@ -205,6 +212,75 @@ class FileCollectorTest {
 
         assertThatIOException().isThrownBy(() -> collector.collect(input, input, temp.resolve("out")))
                 .withMessageContaining("not a directory");
+    }
+
+    @Test
+    void reportsSuccessfulCopiesAgainstReportTotal() throws IOException {
+        Path first = Files.writeString(temp.resolve("first.jpg"), "image");
+        Path second = Files.writeString(temp.resolve("second.jpg"), "image");
+        Path input = report("json", first, second);
+        Files.delete(second);
+        List<ProgressUpdate> updates = new ArrayList<>();
+
+        new FileCollector(updates::add).collect(input, temp, temp.resolve("out"));
+
+        assertThat(updates.get(0)).isEqualTo(new ProgressUpdate(COLLECT, 0, 2, 0, 0, RUNNING));
+        assertThat(updates.get(updates.size() - 1)).isEqualTo(
+                new ProgressUpdate(COLLECT, 2, 2, 2, 0, COMPLETED));
+        assertThat(updates).extracting(ProgressUpdate::current).isSorted();
+        assertThat(updates.stream().map(ProgressUpdate::current).distinct()).containsExactly(0L, 1L, 2L);
+    }
+
+    @Test
+    void missingEntriesNeverCountAsCopied() throws IOException {
+        Path found = Files.writeString(temp.resolve("found.jpg"), "found");
+        Path missing = Files.writeString(temp.resolve("missing.jpg"), "missing");
+        Path input = report("json", found, missing);
+        Files.delete(missing);
+        List<ProgressUpdate> updates = new ArrayList<>();
+
+        new FileCollector(updates::add).collect(input, temp, temp.resolve("out"));
+
+        assertThat(updates.get(updates.size() - 1)).isEqualTo(
+                new ProgressUpdate(COLLECT, 1, 2, 1, 1, COMPLETED));
+        assertThat(updates).allSatisfy(update -> assertThat(update.current()).isLessThan(2));
+    }
+
+    @Test
+    void emptyReportCompletesWithZeroCounts() throws IOException {
+        Path input = Files.writeString(temp.resolve("report.json"), "[]");
+        List<ProgressUpdate> updates = new ArrayList<>();
+
+        new FileCollector(updates::add).collect(input, temp, temp.resolve("out"));
+
+        assertThat(updates).containsExactly(
+                new ProgressUpdate(COLLECT, 0, 0, 0, 0, RUNNING),
+                new ProgressUpdate(COLLECT, 0, 0, 0, 0, COMPLETED));
+    }
+
+    @Test
+    void copyFailureEmitsFailedStateWithoutCountingTheFailedCopy() throws IOException {
+        Path original = Files.writeString(temp.resolve("photo.jpg"), "image");
+        Path input = report("json", original);
+        Path output = temp.resolve("out");
+        List<ProgressUpdate> updates = new ArrayList<>();
+        FileCollector collector = new FileCollector(update -> {
+            updates.add(update);
+            if (updates.size() == 1) {
+                // Simulate the output directory becoming unavailable after validation.
+                try {
+                    Files.delete(output);
+                    Files.writeString(output, "not a directory anymore");
+                } catch (IOException e) {
+                    throw new UncheckedIOException(e);
+                }
+            }
+        });
+
+        assertThatIOException().isThrownBy(() -> collector.collect(input, temp, output));
+
+        assertThat(updates.get(updates.size() - 1)).isEqualTo(
+                new ProgressUpdate(COLLECT, 0, 1, 0, 0, FAILED));
     }
 
     private Path report(String format, Path... files) throws IOException {

@@ -56,7 +56,7 @@ public class FotoCollectorApplication {
 
         log.info("Starting collection on directory: {}", files.toRealPath(LinkOption.NOFOLLOW_LINKS));
 
-        final ScanResult scanResult = new PictureScanner(files).getFiles();
+        final ScanResult scanResult = new PictureScanner(files, new ConsoleProgress()).getFiles();
         if (scanResult.isEmpty()) {
             log.info("No results found. Nothing to be done and no output was written :-)");
         } else {
@@ -83,7 +83,7 @@ public class FotoCollectorApplication {
         if (!options.keySet().equals(allowed)) {
             throw new IllegalArgumentException("collect requires --input, --start and --output\n" + USAGE);
         }
-        FileCollector.Result result = new FileCollector().collect(options.get("--input"),
+        FileCollector.Result result = new FileCollector(new ConsoleProgress()).collect(options.get("--input"),
                 options.get("--start"), options.get("--output"));
         log.info("Collection complete: {} copied, {} missing", result.copiedFiles().size(), result.missingFiles().size());
         if (!result.missingFiles().isEmpty()) {

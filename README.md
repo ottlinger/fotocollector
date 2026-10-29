@@ -89,6 +89,24 @@ java -jar build/libs/fotocollector-1.0.0-SNAPSHOT-all.jar collect \
 * The command logs a summary of copied and missing files. Missing files produce an error and a nonzero exit status, while files already collected remain in the output folder. Invalid reports and I/O failures also fail the command.
 * JSON input may be the generated array or an object containing an `entries` array. Malformed entries, unsafe filenames, and invalid hashes are rejected before copying.
 
+#### Progress reporting (Issue [#6](https://github.com/ottlinger/fotocollector/issues/6))
+
+Both CLI operations report progress on **stderr**:
+
+```text
+Scan: counting files...
+Scan: 120 of 350 files checked | 98 images found
+Scan complete: 350 of 350 files checked | 290 images found
+Collect: 42 of 100 images copied | 0 missing
+Collect complete: 98 of 100 images copied | 2 missing
+```
+
+* A scan first counts regular files, then checks content and computes image hashes. The extra directory traversal does not run Tika or hash files and does not retain a list of paths in memory. Both passes skip symbolic links. The total is a snapshot: adding or removing files during a scan can change the final counts.
+* Collect uses the number of entries in the report as its total. Only successful copies advance the counter; missing entries are listed separately at the end, never counted as copied. Counts advance per file, not per byte, so hashing or copying a large file can take time between updates.
+* In an interactive console, one line is refreshed at most five times per second. With redirected output or no console, plain status lines are emitted at most every five seconds. Initial and final states are always printed, including empty operations. Interrupted operations that encounter an exception report `failed`, not `complete`.
+* Per-file copy messages are available at debug level instead of flooding the normal console output. The usual final summary and missing-file exit status are unchanged.
+* Library callers remain silent by default. Pass a `ProgressListener` to `PictureScanner(Path, ProgressListener)` or `FileCollector(ProgressListener)` to receive synchronous `ProgressUpdate` snapshots independently of the console renderer.
+
 ## License
 
 This tool is licensed under [Apache License v2.0](https://www.apache.org/licenses/).
