@@ -5,6 +5,7 @@ import de.aikiit.fotocollector.OutputWriter;
 import de.aikiit.fotocollector.ScanEntry;
 import de.aikiit.fotocollector.ScanResult;
 import de.aikiit.fotocollector.util.FileUtil;
+import org.jsoup.nodes.Entities;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -45,7 +46,7 @@ public class HtmlOutputWriter implements OutputWriter {
         AtomicInteger count = new AtomicInteger(1);
 
         for (ScanEntry entry : result.getEntries()) {
-            table.append(String.format(TABLE_ENTRY, "#" + count.getAndIncrement(), entry.getFileName(), entry.getSize(), entry.getHashOverContent()));
+            table.append(String.format(TABLE_ENTRY, "#" + count.getAndIncrement(), Entities.escape(entry.getFileName()), entry.getSize(), entry.getHashOverContent()));
         }
 
         table.append(String.format(FOOTER, time.format(formatter), result.getEntries().size()));

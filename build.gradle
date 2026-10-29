@@ -67,6 +67,7 @@ repositories {
 dependencies {
     implementation 'commons-codec:commons-codec:1.23.0'
     implementation 'com.google.guava:guava:33.7.2-jre'
+    implementation 'org.jsoup:jsoup:1.23.2'
     implementation platform('tools.jackson:jackson-bom:3.2.4')
     implementation 'tools.jackson.core:jackson-databind'
     implementation 'org.projectlombok:lombok:1.18.48'

@@ -11,10 +11,8 @@ FotoCollector helps you with that:
 
 * Just copy all of your desired pictures into one folder.
 * Let FotoCollector run over that folder in order to create a JSON (machine-readable) and HTML (human-readable) report.
-* Afterwards you shall be able to recreate these files by letting FotoCollector scan your image base directory and copy the desired files from the JSON report into a separate output folder.
+* Recreate the collection with the `collect` command: scan your image base directory and copy the desired files from a JSON or HTML report into a separate output folder.
 * Thus you can recreate collections of photographs based on metadata.
-
-fyi: The last two steps are not yet implemented!
 
 ## Status
 
@@ -44,7 +42,7 @@ In case you are using the wrapper, the following [wrapper version](./gradle/wrap
 
 ### Run the tool
 
-Since the tool is still in development there's no command-line at the moment.
+Requires Java 17 or newer. Pass a folder to generate reports, or use `collect` to recreate a collection from an existing report. Use `--help` for command syntax.
 
 #### UberJAR
 
@@ -61,6 +59,24 @@ to run in the current directory and generate the following output formats:
 
 * fotocollector.html - HTML report
 * fotocollector.json - JSON report
+
+#### Collect files from a report
+
+```bash
+java -jar build/libs/fotocollector-1.0.0-SNAPSHOT-all.jar collect \
+  --input /path/to/fotocollector.json \
+  --start /path/to/photo-archive \
+  --output /path/to/recreated-collection
+```
+
+`--input` also accepts the generated HTML report (`.html` or `.htm`). All three options are required; paths containing spaces should be quoted.
+
+* The start folder is searched **recursively**, without following symbolic links. The output folder is created if necessary and excluded from the search if it is inside the start folder. It must not equal or contain the start folder.
+* Files are matched by size and the report's **SHA3-256 content hash**, so moved or renamed files can be found. Each report entry is copied once, using its original filename in a flat output directory. Duplicate source files do not produce extra copies.
+* If a report entry has no hash (`null` or `none`), matching falls back to **filename and size**. This cannot verify content identity; use reports with hashes when possible.
+* Source files are never moved or deleted. Existing output files are never overwritten: collisions get a suffix such as `photo.jpg_0`.
+* The command logs a summary of copied and missing files. Missing files produce an error and a nonzero exit status, while files already collected remain in the output folder. Invalid reports and I/O failures also fail the command.
+* JSON input may be the generated array or an object containing an `entries` array. Malformed entries, unsafe filenames, and invalid hashes are rejected before copying.
 
 ## License
 

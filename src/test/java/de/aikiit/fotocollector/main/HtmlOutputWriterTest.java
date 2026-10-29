@@ -27,6 +27,16 @@ public class HtmlOutputWriterTest {
     }
 
     @Test
+    void escapesFilenamesInHtml() {
+        final ScanResult input = new ScanResult();
+        input.addEntry(new ScanEntry("holiday & <beach>.jpg", new Date(0)));
+
+        assertThat(new HtmlOutputWriter().write(input).result())
+                .contains("holiday &amp; &lt;beach&gt;.jpg")
+                .doesNotContain("<beach>");
+    }
+
+    @Test
     public void checkWithEntries() {
         final ScanResult input = new ScanResult();
         final String fileName = "ASplendidPic.jpeg";

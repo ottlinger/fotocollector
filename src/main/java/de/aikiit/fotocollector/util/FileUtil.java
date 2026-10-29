@@ -4,6 +4,7 @@ import com.google.common.annotations.VisibleForTesting;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -46,8 +47,11 @@ public final class FileUtil {
      * @return {@value #HASH_ALGORITHM} or {@code 'none'} in case of errors.
      */
     public static String getHash(Path path) {
-        try {
-            return new DigestUtils(HASH_ALGORITHM).digestAsHex((Files.newInputStream(path, StandardOpenOption.READ)));
+        if (path == null) {
+            return NONE;
+        }
+        try (InputStream input = Files.newInputStream(path, StandardOpenOption.READ)) {
+            return new DigestUtils(HASH_ALGORITHM).digestAsHex(input);
         } catch (NullPointerException | IOException e) {
             return NONE;
         }
