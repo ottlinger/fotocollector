@@ -96,7 +96,8 @@ Furthermore I experienced the ease of releasing with gradle, it nails down to a
 ```bash
 gradle release
 ```
-due to the Release-Plugin (https://github.com/researchgate/gradle-release).
+
+due to the [Release-Plugin](https://github.com/researchgate/gradle-release).
 
 ## Project idea
 
