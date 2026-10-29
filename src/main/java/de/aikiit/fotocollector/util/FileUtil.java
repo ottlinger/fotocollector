@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 /**
@@ -25,15 +24,20 @@ public final class FileUtil {
     public static final String HASH_ALGORITHM = "SHA3-256";
 
     /**
-     * If the given path contains a file baseName a number is added as a suffix.
+     * On collision, inserts a number before the last extension (photo_0.jpg).
+     * Extensionless files and dotfiles without another dot get the number at the end.
      */
     public static Path makeUnique(Path basePath, String baseName) {
 
-        Path desiredPath = Paths.get(basePath.toString(), baseName);
-        int suffix = 0;
+        Path desiredPath = basePath.resolve(baseName);
+        int dot = baseName.lastIndexOf('.');
+        boolean hasExtension = dot > 0 && dot < baseName.length() - 1;
+        String stem = hasExtension ? baseName.substring(0, dot) : baseName;
+        String extension = hasExtension ? baseName.substring(dot) : "";
+        int counter = 0;
 
         while (Files.exists(desiredPath)) {
-            desiredPath = Paths.get(basePath.toString(), baseName + "_" + (suffix++));
+            desiredPath = basePath.resolve(stem + "_" + (counter++) + extension);
         }
 
         return desiredPath;

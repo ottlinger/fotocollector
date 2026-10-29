@@ -27,8 +27,7 @@ public final class CollectionManifestReader {
         if (!Files.isRegularFile(input)) {
             throw new IOException("Report is not a regular file: " + input);
         }
-        // OutputResult appends _0, _1, ... when a previous report already exists.
-        String name = input.getFileName().toString().toLowerCase(Locale.ROOT).replaceFirst("_\\d+$", "");
+        String name = input.getFileName().toString().toLowerCase(Locale.ROOT);
         if (name.endsWith(".json")) {
             return readJson(input);
         }

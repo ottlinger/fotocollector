@@ -74,7 +74,7 @@ java -jar build/libs/fotocollector-1.0.0-SNAPSHOT-all.jar collect \
 * The start folder is searched **recursively**, without following symbolic links. The output folder is created if necessary and excluded from the search if it is inside the start folder. It must not equal or contain the start folder.
 * Files are matched by size and the report's **SHA3-256 content hash**, so moved or renamed files can be found. Each report entry is copied once, using its original filename in a flat output directory. Duplicate source files do not produce extra copies.
 * If a report entry has no hash (`null` or `none`), matching falls back to **filename and size**. This cannot verify content identity; use reports with hashes when possible.
-* Source files are never moved or deleted. Existing output files are never overwritten: collisions get a suffix such as `photo.jpg_0`.
+* Source files are never moved or deleted. Existing output files are never overwritten: collisions get a numeric infix before the extension, such as `photo_0.jpg`.
 * The command logs a summary of copied and missing files. Missing files produce an error and a nonzero exit status, while files already collected remain in the output folder. Invalid reports and I/O failures also fail the command.
 * JSON input may be the generated array or an object containing an `entries` array. Malformed entries, unsafe filenames, and invalid hashes are rejected before copying.
 

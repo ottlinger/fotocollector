@@ -66,7 +66,7 @@ class FileCollectorTest {
 
         assertThat(result.missingFiles()).isEmpty();
         assertThat(Files.readString(output.resolve("photo.jpg"))).isEqualTo("keep this");
-        assertThat(Files.readString(output.resolve("photo.jpg_0"))).isEqualTo("new image");
+        assertThat(Files.readString(output.resolve("photo_0.jpg"))).isEqualTo("new image");
     }
 
     @Test
@@ -81,7 +81,7 @@ class FileCollectorTest {
 
         assertThat(result.copiedFiles()).isEmpty();
         assertThat(result.missingFiles()).containsExactly("photo.jpg");
-        assertThat(output.resolve("photo.jpg_0")).doesNotExist();
+        assertThat(output.resolve("photo_0.jpg")).doesNotExist();
     }
 
     @Test

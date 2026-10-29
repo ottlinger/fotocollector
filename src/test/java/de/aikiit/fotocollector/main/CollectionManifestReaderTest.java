@@ -83,8 +83,8 @@ class CollectionManifestReaderTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"report.json_0", "report.JSON_12"})
-    void readsReportsWithCollisionSuffixes(String name) throws IOException {
+    @ValueSource(strings = {"report_0.json", "report_12.JSON"})
+    void readsReportsWithCollisionCounters(String name) throws IOException {
         Path input = Files.writeString(temp.resolve(name), "[]");
 
         assertThat(reader.read(input)).isEmpty();
