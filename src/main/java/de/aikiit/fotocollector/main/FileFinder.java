@@ -37,7 +37,7 @@ public class FileFinder {
             log.info("Nothing to be done here.");
         } else {
             for (ScanEntry entry : result.getEntries()) {
-                main(entry.getFileName());
+                main(entry.fileName());
             }
         }
     }

@@ -57,10 +57,8 @@ public final class PictureScanner {
     private ScanEntry convert(Path path) throws IOException {
         final Path fileName = path.getFileName();
         BasicFileAttributes attr = Files.readAttributes(path, BasicFileAttributes.class);
-        ScanEntry entry = new ScanEntry(fileName.toString(), new Date(attr.creationTime().toMillis()));
-        entry.setSize(Files.size(path));
-        entry.setHashOverContent(FileUtil.getHash(path));
-        return entry;
+        return new ScanEntry(fileName.toString(), FileUtil.getHash(path),
+                new Date(attr.creationTime().toMillis()), Files.size(path));
     }
 
     public ScanResult getFiles() {

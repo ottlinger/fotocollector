@@ -46,7 +46,7 @@ public class HtmlOutputWriter implements OutputWriter {
         AtomicInteger count = new AtomicInteger(1);
 
         for (ScanEntry entry : result.getEntries()) {
-            table.append(String.format(TABLE_ENTRY, "#" + count.getAndIncrement(), Entities.escape(entry.getFileName()), entry.getSize(), entry.getHashOverContent()));
+            table.append(String.format(TABLE_ENTRY, "#" + count.getAndIncrement(), Entities.escape(entry.fileName()), entry.size(), entry.hashOverContent()));
         }
 
         table.append(String.format(FOOTER, time.format(formatter), result.getEntries().size()));

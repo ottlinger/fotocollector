@@ -210,9 +210,8 @@ class FileCollectorTest {
     private Path report(String format, Path... files) throws IOException {
         ScanResult scan = new ScanResult();
         for (Path file : files) {
-            ScanEntry entry = new ScanEntry(file.getFileName().toString(), new Date(0));
-            entry.setSize(Files.size(file));
-            entry.setHashOverContent(FileUtil.getHash(file));
+            ScanEntry entry = new ScanEntry(file.getFileName().toString(), FileUtil.getHash(file),
+                    new Date(0), Files.size(file));
             scan.addEntry(entry);
         }
         OutputResult report = format.equals("json") ? new JsonOutputWriter().write(scan)

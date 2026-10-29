@@ -11,6 +11,8 @@ import java.nio.file.Path;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * @author hirsch
@@ -24,12 +26,10 @@ public class JsonOutputWriterTest {
     @Test
     public void serializationFailureYieldsEmptyResult() {
         final ScanResult result = new ScanResult();
-        result.addEntry(new ScanEntry("unreadable.txt") {
-            @Override
-            public Date getCreationDate() {
-                throw new IllegalStateException("Cannot read creation date");
-            }
-        });
+        final ScanEntry entry = mock(ScanEntry.class);
+        when(entry.fileName()).thenReturn("unreadable.txt");
+        when(entry.creationDate()).thenThrow(new IllegalStateException("Cannot read creation date"));
+        result.addEntry(entry);
 
         assertThat(writer.write(result).isEmpty()).isTrue();
     }
@@ -46,9 +46,8 @@ public class JsonOutputWriterTest {
     public void writeWithSingleResultAndSortedByName() throws IOException {
         final String fileName = "testFileName.txt";
         final ScanResult result = new ScanResult();
-        final ScanEntry entry = new ScanEntry(fileName, new Date(1));
         final long size = 1234L;
-        entry.setSize(size);
+        final ScanEntry entry = new ScanEntry(fileName, null, new Date(1), size);
         result.addEntry(entry);
         result.addEntry(new ScanEntry("a" + fileName, new Date(0)));
         final OutputResult outputResult = writer.write(result);

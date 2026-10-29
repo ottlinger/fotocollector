@@ -2,7 +2,6 @@ package de.aikiit.fotocollector;
 
 import tools.jackson.databind.annotation.JsonSerialize;
 import de.aikiit.fotocollector.main.DateJacksonSerializer;
-import lombok.Data;
 
 import java.util.Date;
 
@@ -12,32 +11,28 @@ import java.util.Date;
  * @author hirsch
  * @version 2016-02-20, 14:09
  */
-@Data
-public class ScanEntry {
+public record ScanEntry(
+        String fileName,
+        // SHA-1 hash of the entry's contents.
+        String hashOverContent,
+        @JsonSerialize(using = DateJacksonSerializer.class) Date creationDate,
+        long size) {
 
-    private final String fileName;
-
-    /**
-     * SHA-1 hashValue of contents of an entry.
-     */
-    private String hashOverContent = null;
-
-    private final Date creationDate;
-
-    private long size = 0L;
+    public ScanEntry {
+        creationDate = creationDate == null ? null : new Date(creationDate.getTime());
+    }
 
     public ScanEntry(String fileName) {
         this(fileName, new Date());
     }
 
     public ScanEntry(String fileName, Date creationDate) {
-        this.fileName = fileName;
-        this.creationDate = creationDate;
+        this(fileName, null, creationDate, 0L);
     }
 
-    @JsonSerialize(using=DateJacksonSerializer.class)
-    public Date getCreationDate() {
-        return creationDate;
+    @Override
+    public Date creationDate() {
+        return creationDate == null ? null : new Date(creationDate.getTime());
     }
 
 }
