@@ -24,9 +24,8 @@ public class FileFinder {
 
         // https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html#find-java.nio.file.Path-int-java.util.function.BiPredicate-java.nio.file.FileVisitOption...-
         final URI path = args == null || args.length < 1 ? Paths.get("/tmp/").toUri() : Paths.get(args[0]).toUri();
-        try {
-            walk(Paths.get(path))
-                    .filter(Files::isRegularFile)
+        try (var files = walk(Paths.get(path))) {
+            files.filter(Files::isRegularFile)
                     .forEach(e -> log.info(e.toString()));
         } catch (IOException e) {
             throw new RuntimeException(e);
