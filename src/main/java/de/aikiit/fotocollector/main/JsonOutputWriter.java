@@ -1,7 +1,8 @@
 package de.aikiit.fotocollector.main;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.MapperFeature;
+import tools.jackson.databind.json.JsonMapper;
 import de.aikiit.fotocollector.OutputResult;
 import de.aikiit.fotocollector.OutputWriter;
 import de.aikiit.fotocollector.ScanResult;
@@ -12,7 +13,10 @@ import de.aikiit.fotocollector.ScanResult;
  */
 public class JsonOutputWriter implements OutputWriter {
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    // Preserve the existing JSON property order rather than Jackson 3's alphabetical default.
+    private static final JsonMapper MAPPER = JsonMapper.builder()
+            .disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY)
+            .build();
     private static final String NAME = "fotocollector.json";
 
     @Override
@@ -24,7 +28,7 @@ public class JsonOutputWriter implements OutputWriter {
 
         try {
             return new OutputResult(MAPPER.writeValueAsString(result.getEntries()), NAME);
-        } catch (JsonProcessingException e) {
+        } catch (JacksonException e) {
             return new OutputResult(null, NAME);
         }
 

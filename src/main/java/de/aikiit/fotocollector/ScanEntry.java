@@ -1,6 +1,6 @@
 package de.aikiit.fotocollector;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import tools.jackson.databind.annotation.JsonSerialize;
 import de.aikiit.fotocollector.main.DateJacksonSerializer;
 import lombok.Data;
 

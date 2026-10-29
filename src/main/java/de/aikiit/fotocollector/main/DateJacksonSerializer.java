@@ -1,10 +1,9 @@
 package de.aikiit.fotocollector.main;
 
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.ValueSerializer;
+import tools.jackson.databind.SerializationContext;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -14,9 +13,9 @@ import java.util.TimeZone;
  * @author hirsch
  * @version 2016-03-10, 23:38
  */
-public class DateJacksonSerializer extends JsonSerializer<Date> {
+public class DateJacksonSerializer extends ValueSerializer<Date> {
     @Override
-    public void serialize(final Date value, final JsonGenerator gen, final SerializerProvider serializers) throws IOException {
+    public void serialize(final Date value, final JsonGenerator gen, final SerializationContext context) {
 
         if (value == null) {
             gen.writeString("none");

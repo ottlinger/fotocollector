@@ -22,6 +22,19 @@ public class JsonOutputWriterTest {
     private final static Path cwd = new File(".").toPath();
 
     @Test
+    public void serializationFailureYieldsEmptyResult() {
+        final ScanResult result = new ScanResult();
+        result.addEntry(new ScanEntry("unreadable.txt") {
+            @Override
+            public Date getCreationDate() {
+                throw new IllegalStateException("Cannot read creation date");
+            }
+        });
+
+        assertThat(writer.write(result).isEmpty()).isTrue();
+    }
+
+    @Test
     public void writeWithoutResults() throws IOException {
         final ScanResult result = new ScanResult();
         final OutputResult outputResult = writer.write(result);
