@@ -52,9 +52,9 @@ The application is generated as a shadow-JAR, that may be launched in the follow
 
 ```bash
 $ ./gradlew
-BUILD SUCCESSFUL in 5s
-13 actionable tasks: 13 executed
-$ java -jar build/libs/fotocollector-0.0.2-SNAPSHOT-all.jar .
+BUILD SUCCESSFUL in 1s
+14 actionable tasks: 10 executed, 4 from cache
+$ java -jar build/libs/fotocollector-1.0.0-SNAPSHOT-all.jar .
 ```
 
 to run in the current directory and generate the following output formats:
@@ -80,6 +80,7 @@ Furthermore I experienced the ease of releasing with gradle, it nails down to a
 ```bash
 gradle release
 ```
+due to the Release-Plugin (https://github.com/researchgate/gradle-release).
 
 ## Project idea
 
