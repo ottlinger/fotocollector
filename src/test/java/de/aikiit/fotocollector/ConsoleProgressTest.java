@@ -38,7 +38,9 @@ class ConsoleProgressTest {
                 "Collect: 0 of 100 images copied | 0 missing",
                 "Collect: 42 of 100 images copied | 0 missing",
                 "Collect complete: 98 of 100 images copied | 2 missing");
-        assertThat(output()).doesNotContain("\r", "\u001b", "100 of 100");
+        // Windows line endings contain a carriage return, but are not terminal control output.
+        assertThat(output().replace(System.lineSeparator(), "\n"))
+                .doesNotContain("\r", "\u001b", "100 of 100");
     }
 
     @Test
