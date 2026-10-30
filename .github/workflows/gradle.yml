@@ -23,13 +23,24 @@ jobs:
     - name: Run build with Gradle wrapper
       run: ./gradlew build --scan
 
-    # MUST only be done once using ubuntu as reference operating system
     - name: Upload build reports
+      id: reports
       uses: actions/upload-artifact@v7
-      if: matrix.os == 'ubuntu-latest'
+      if: always()
       with:
-        name: build-reports
-        path: build/reports/
+        name: build-reports-${{ matrix.os }}
+        path: |
+          build/reports/
+          build/test-results/test/TEST-*.xml
+
+    - name: Link build reports in job summary
+      if: always() && steps.reports.outputs.artifact-url != ''
+      shell: bash
+      env:
+        REPORT_URL: ${{ steps.reports.outputs.artifact-url }}
+        RUNNER_OS_NAME: ${{ matrix.os }}
+      run: |
+        printf '### Gradle reports (%s)\n\n[Download HTML reports and JUnit results](%s)\n\nExtract the archive and open `reports/tests/test/index.html` for the test report.\n' "$RUNNER_OS_NAME" "$REPORT_URL" >> "$GITHUB_STEP_SUMMARY"
 
     - name: Show test Summary
       uses: test-summary/action@v2
