@@ -69,7 +69,7 @@ dependencies {
     implementation 'com.google.guava:guava:33.8.0-jre'
     implementation 'org.jsoup:jsoup:1.24.1'
     implementation 'org.apache.tika:tika-core:4.2.0'
-    implementation platform('tools.jackson:jackson-bom:3.2.4')
+    implementation platform('tools.jackson:jackson-bom:3.3.0')
     implementation 'tools.jackson.core:jackson-databind'
     implementation 'org.projectlombok:lombok:1.18.48'
     annotationProcessor 'org.projectlombok:lombok:1.18.48'
